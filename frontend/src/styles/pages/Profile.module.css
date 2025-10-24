@@ -1,0 +1,221 @@
+.container {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.profileContainer {
+    background-color: white;
+    width: 800px;
+    padding: 30px;
+    border-radius: 50px;
+    margin-right: 30px;
+}
+
+.sideContainer {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 220px;
+    margin: 20px 0;
+    border-radius: 30px;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.sideItem {
+    width: fit-content;
+    margin: 10px 0;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.descriptionContainer {
+    display: flex;
+}
+
+.profileHeaderContainer {
+    display: flex;
+}
+
+.avatar {
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.connections {
+    font-size: x-large;
+    color: gray;
+    display: flex;
+}
+
+.connectionsP {
+    margin-right: 30px;
+    margin-bottom: 0;
+}
+
+.userRating {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.username {
+    font-size: xx-large;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.label {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.films {
+    display: flex;
+}
+
+.filmsImg {
+    width: 150px;
+    height: auto;
+    margin-right: 40px;
+}
+
+.button {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.genres {
+    display: flex;
+}
+
+.genresP {
+    background-color: lightgray;
+    font-size: x-large;
+    padding: 10px;
+    margin-right: 30px;
+    border-radius: 25px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.dateP {
+    font-size: medium;
+    color: gray;
+}
+
+.dateContainer {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+}
+
+.dateImg{
+    width:20px;
+    height:20px;
+    margin-right: 10px;
+}
+
+.headerInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.infoP {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.stars {
+    display: flex;
+    align-items: center;
+}
+
+.starsImg {
+    width: 32px;
+    height: 32px;
+}
+
+.userRatingH1 {
+    color: orange;
+    font-size: xxx-large;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.userRatingP {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.email {
+    font-size: x-large;
+    margin-top: 5px;
+}
+
+.labelGenre {
+    margin-bottom: 0;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 800px) {
+    .profileHeaderContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profileContainer {
+        width: 600px;
+    }
+
+    .films {
+        flex-direction: column;
+    }
+
+    .filmsImg {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .profileContainer {
+        width: 400px;
+    }
+
+    .genres {
+        flex-direction: column;
+    }
+
+    .genresP {
+        width: 200px;
+        margin-top: 30px;
+    }
+
+    .connections {
+        justify-content: center;
+    }
+
+    .avatar {
+        width: 150px;
+        height: 150px;
+    }
+}
+

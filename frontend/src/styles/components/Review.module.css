@@ -1,0 +1,37 @@
+.reviewCard {
+    background-color: lightgray;
+    width: 350px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.reviewHeader {
+    display: flex;
+}
+
+.reviewHeader img {
+    width: 50px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.reviewBottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reviewRating {
+    display: flex;
+    align-items: center;
+}
+
+.reviewDate {
+    display: flex;
+    align-items: center;
+}
+
+.reviewBottom img {
+    width: 20px;
+    height: 20px;
+}

@@ -1,0 +1,23 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+}
+
+.search{
+    width: 1000px
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+}
+
+.discussion{
+    margin: 20px 0px;
+}
+
+.discussions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

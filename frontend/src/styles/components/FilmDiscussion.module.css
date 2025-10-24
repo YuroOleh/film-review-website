@@ -1,0 +1,60 @@
+.container{
+    background-color: white;
+    display: flex;
+    width: 520px;
+    padding: 20px;
+    border-radius: 10px;
+}
+.filmContainer{
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+.commentsContainer{
+    display: flex;
+    flex-direction: column;
+}
+.infoContainer{
+    display: flex;
+    flex-direction: column;
+}
+.filmContainerImg{
+    width:100px;
+    height: auto;
+    border-radius: 10px;
+}
+.userInfoImg{
+    width: 32px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.commentsInfoImg{
+    width: 24px;
+    height: 24px;
+}
+.userInfo{
+    display:flex;
+    align-items: center;
+}
+.commentsInfo{
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+}
+.comment{
+    margin-bottom: 5px;
+}
+.commentsContainerP{
+    font-size: large;
+    font-weight: bold;
+    margin: 0px;
+    margin-bottom: 5px;
+}
+.commentsInfoP{
+    font-size: large;
+    margin: 0px;
+}
+.userInfoP{
+    margin:0px;
+}

@@ -1,0 +1,132 @@
+.filmDetailsContainer {
+    background-color: white;
+    width: 1000px;
+    margin: 0 auto;
+    border-radius: 30px;
+    padding: 10px;
+    padding-top: 20px;
+}
+
+.detailsPoster {
+    border-radius: 30px;
+    width: 300px;
+    height: auto;
+}
+
+.filmDescriptionContainer {
+    background-color: lightgray;
+    border-radius: 20px;
+    width: 60%;
+    padding: 0 20px;
+}
+
+.filmDetailsRating {
+    display: flex;
+    align-items: center;
+}
+
+.filmDetailsRatingImg {
+    width: 32px;
+    height: 32px;
+}
+
+.filmDetailsRatingP {
+    font-size: xx-large;
+    color: orange;
+    font-weight: bold;
+    margin: 0;
+    margin-right: 10px;
+}
+
+.filmDetailsCard {
+    margin-top: 20px;
+    border-radius: 50px;
+}
+
+.filmDetailsTitle {
+    font-size: xx-large;
+    font-weight: bold;
+    margin: 0;
+}
+
+.filmDetailsHeader {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filmDetailsSection {
+    font-weight: bold;
+}
+
+.filmDetailsDescription {
+    font-size: large;
+}
+
+.filmDetailsBottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.addToWatchlist {
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+.filmDetailsMainDescription {
+    font-size: x-large;
+    width: 90%;
+}
+
+.filmDetailsGenres {
+    display: flex;
+}
+
+.filmDetailsGenresP {
+    font-size: large;
+    font-weight: bold;
+    margin-left: 20px;
+    background-color: lightgray;
+    padding: 15px 40px;
+    border-radius: 30px;
+}
+
+.filmDetailsHeaderMain {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.detailsPhoto {
+    width: 200px;
+    height: auto;
+    margin-left: 20px;
+}
+
+.detailsLabel {
+    font-size: x-large;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.detailsButton {
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.reviewsContainer {
+    display: flex;
+}
+
+.filmReview {
+    margin-left: 20px;
+}
+
+.filmDiscussions {
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.discussionsContainer {
+    display: flex;
+}

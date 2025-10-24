@@ -1,0 +1,23 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+}
+
+.articles{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.article{
+    margin: 20px 0px;
+}
+
+.search{
+    width: 1000px
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+}
