@@ -1,0 +1,66 @@
+.articleContainer{
+    background-color: white;
+    display: flex;
+    width: 700px;
+    border-radius: 10px;
+}
+
+.viewsIcon{
+    width: 26px;
+    height: 26px;
+}
+
+.articleImg{
+    width: 200px;
+    height: auto;
+}
+
+.calendarIcon{
+    width: 20px;
+    height: 20px;
+}
+
+.articleTitle{
+    font-size: x-large;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.viewsContainer{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.dateContainer{
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+}
+
+.articleSideContainer{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.viewsCount{
+    margin: 0px;
+    margin-right: 5px;
+}
+
+.date{
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+@media (max-width: 700px) {
+    .articleContainer{
+        width: 500px;
+    }
+}

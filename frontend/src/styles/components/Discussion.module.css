@@ -1,0 +1,38 @@
+.discussionCard {
+    background-color: lightgray;
+    width: 300px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.discussionTitle {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.discussionUser {
+    display: flex;
+    align-items: center;
+}
+
+.discussionUser img {
+    width: 40px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.discussionComments {
+    display: flex;
+    align-items: center;
+}
+
+.discussionComments img {
+    width: 32px;
+    height: 32px;
+}
+
+.discussionBottom {
+    display: flex;
+    justify-content: space-between;
+}
