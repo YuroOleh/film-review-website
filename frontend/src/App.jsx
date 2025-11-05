@@ -10,7 +10,7 @@ import Reviews from "./pages/Reviews";
 import ReviewDetails from "./pages/ReviewDetails";
 import Discussions from "./pages/Discussions";
 import DiscussionDetails from "./pages/DiscussionDetails";
-
+import NotFound from "./pages/NotFound";
 
 
 
@@ -29,6 +29,7 @@ function App() {
       <Route path="/reviews/details" element={<ReviewDetails />} />
       <Route path="/discussions" element={<Discussions />} />
       <Route path="/discussions/details" element={<DiscussionDetails />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

@@ -3,28 +3,44 @@ import Searchbar from "../components/shared/Searchbar";
 import MovieCard from "../components/Films/MovieCard";
 import Pagination from "../components/shared/Pagination";
 import styles from "../styles/pages/Films.module.css";
+import { useState } from "react";
+import MoviesFilter from "../components/Films/MoviesFilter";
+import Sort from "../components/shared/Sort";
 
 export default function Films() {
+    const films = Array.from({ length: 100 }, (_, i) => <MovieCard />);
+    const filmsPerPage = 9;
+
+    const totalPages = Math.ceil(films.length / filmsPerPage);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const startIndex = (currentPage - 1) * filmsPerPage;
+    const endIndex = startIndex + filmsPerPage;
+
+    const currentFilms = films.slice(startIndex, endIndex);
+
     return (
         <div>
             <Navbar />
-            <Searchbar placeholder="Search films..." />
+            <Searchbar placeholder="Search films..." showFilter={true} FilterComponent={<MoviesFilter />} SortComponent={
+                <Sort
+                    options={[
+                    "Name",
+                    "Rating",
+                    "Release date",
+                    "Length"
+                    ]}
+                />}
+            />
 
             <div className={styles.filmList}>
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
+                {currentFilms }
             </div>
 
             <div className={styles.pagination}>
-                <Pagination />
+                <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage}/>
             </div>
+
         </div>
     );
 }

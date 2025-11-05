@@ -16,7 +16,10 @@ export default function Login() {
             <Input placeholder="Email address" />
             <Input placeholder="Password" type="password" />
 
-            <Button label="Login" />
+            <Link to="/films">
+                <Button label="Login" />
+            </Link>
+            
 
             <p className={styles.bottomText}>
                 Don't have an account?{" "}

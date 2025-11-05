@@ -18,7 +18,9 @@ export default function Register() {
             <Input placeholder="Password" type="password" />
             <Input placeholder="Confirm password" type="password" />
 
-            <Button label="Register" />
+            <Link to="/films">
+                <Button label="Login" />
+            </Link>
 
             <p className={styles.bottomText}>
                 Already have an account?{" "}

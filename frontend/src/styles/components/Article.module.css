@@ -64,3 +64,9 @@
         width: 500px;
     }
 }
+
+
+.link{
+    text-decoration: none;
+    color: inherit;
+}

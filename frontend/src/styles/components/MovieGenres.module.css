@@ -1,0 +1,18 @@
+.genres{
+    display: flex;
+    gap: 10px;
+    overflow-x: scroll;
+    cursor: grab;
+    user-select: none;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+    margin-left: 20px;
+}
+
+.genres:active {
+  cursor: grabbing;
+}
+
+.genres::-webkit-scrollbar {
+  display: none; 
+}

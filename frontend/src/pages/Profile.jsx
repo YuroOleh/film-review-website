@@ -1,14 +1,20 @@
 import React from "react";
+import { useState } from "react";
 import styles from "../styles/pages/Profile.module.css";
 import Button from "../components/shared/Button";
 import Navbar from "../components/shared/Navbar";
 import avatar_placeholder from "../assets/avatar_placeholder.png";
 import poster_placeholder from "../assets/poster_placeholder.jpg";
+import Logout from "../components/Profile/Logout";
+import FavouriteMovies from "../components/Profile/FavouriteMovies";
+import FavouriteGenres from "../components/Profile/FavouriteGenres";
 
 export default function Profile() {
+    const [showLogout, setShowLogout] = useState(false);
+
     return (
         <>
-            <Navbar />
+            <Navbar onLogoutClick={() => {setShowLogout(true)}}/>
             <div className={styles.container}>
                 <div className={styles.profileContainer}>
                     <div className={styles.profileHeaderContainer}>
@@ -47,17 +53,12 @@ export default function Profile() {
 
                     <p className={`${styles.label} ${styles.labelGenre}`}>Favourite genres:</p>
                     <div className={styles.genres}>
-                        <p className={styles.genresP}>Horror</p>
-                        <p className={styles.genresP}>Thriller</p>
-                        <p className={styles.genresP}>Detective fiction</p>
+                        <FavouriteGenres/>
                     </div>
 
                     <p className={styles.label}>Favourite movies:</p>
                     <div className={styles.films}>
-                        <img className={styles.filmsImg} src={poster_placeholder} />
-                        <img className={styles.filmsImg} src={poster_placeholder} />
-                        <img className={styles.filmsImg} src={poster_placeholder} />
-                        <img className={styles.filmsImg} src={poster_placeholder} />
+                        <FavouriteMovies/>
                     </div>
 
                     <div className={styles.button}>
@@ -80,6 +81,10 @@ export default function Profile() {
                     </div>
                 </div>
             </div>
+
+            {showLogout && (
+                <Logout onClose={() => setShowLogout(false)} />
+            )}
         </>
     );
 }

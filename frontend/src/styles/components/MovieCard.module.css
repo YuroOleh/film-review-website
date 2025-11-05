@@ -6,6 +6,7 @@
     border-radius: 30px;
     display: flex;
     flex-direction: column;
+    text-decoration: none; 
 }
 
 .moviePoster {
@@ -20,6 +21,7 @@
     justify-content: space-between;
     margin: 10px 40px;
     font-size: x-large;
+    text-decoration: none;
 }
 
 .headerIcon {
@@ -60,4 +62,9 @@
 .rating {
     display: flex;
     align-items: center;
+}
+
+.link{
+    text-decoration: none;
+    color: inherit;
 }

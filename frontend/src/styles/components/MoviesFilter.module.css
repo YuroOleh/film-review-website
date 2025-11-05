@@ -1,0 +1,51 @@
+.filterContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  z-index: 100;
+  width: 250px;
+}
+
+.filterGroup {
+  margin-bottom: 12px;
+}
+
+.label {
+  display: block;
+  font-size: large;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.input {
+  width: 90px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+}
+
+.separator {
+  font-size: 14px;
+  color: #555;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+}
