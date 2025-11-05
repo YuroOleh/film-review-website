@@ -1,0 +1,19 @@
+.customButton {
+    background: linear-gradient(
+        90deg,
+        rgba(224, 85, 85, 1) 20%,
+        rgba(237, 147, 78, 1) 75%,
+        rgba(240, 175, 96, 1) 100%
+    );
+    padding: 10px 60px;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.customButton:active {
+    transform: scale(0.95);
+}

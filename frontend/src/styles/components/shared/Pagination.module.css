@@ -1,0 +1,40 @@
+.paginationContainer {
+    display: flex;
+    font-size: x-large;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 50px;
+    border-radius: 30px;
+    margin: 10px;
+    padding: 0 20px;
+}
+
+.paginationIcon {
+    width: 20px;
+    height: 20px;
+}
+
+.paginationSecondIcon {
+    width: 20px;
+    height: 20px;
+    margin-right: -10px;
+}
+
+.currentPage {
+    background: linear-gradient(
+        90deg,
+        rgba(224, 85, 85, 1) 20%,
+        rgba(237, 147, 78, 1) 75%,
+        rgba(240, 175, 96, 1) 100%
+    );
+    border-radius: 50%;
+    color: white;
+}
+
+.paginationItem {
+    padding: 0 10px;
+    margin: 5px 0;
+    font-weight: bold;
+}

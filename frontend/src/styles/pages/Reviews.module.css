@@ -1,0 +1,18 @@
+.searchbar{
+    width: 1000px;
+}
+
+.searchbarContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.review{
+    margin-top: 40px;
+}
+
+.paginationContainer{
+    display: flex;
+    justify-content: center;
+    margin:20px 0px;
+}

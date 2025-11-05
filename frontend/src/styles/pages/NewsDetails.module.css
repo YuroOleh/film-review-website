@@ -1,0 +1,105 @@
+.detailsContainer{
+    background-color: white;
+    margin: 50px auto;
+    width: 1000px;
+    height: auto;
+    padding-bottom: 10px;
+    border-radius: 15px;
+}
+
+.imgContainer{
+    width: 100%;
+    height: 200px;
+    overflow: hidden; 
+}
+
+.detailsImg{
+    width: 100%;
+    height: auto;
+    transform: translateY(-280px);
+}
+
+.headerTitle{
+    font-size: xxx-large;
+    font-weight: bold;
+    margin: 0px;
+
+}
+
+.viewsIcon{
+    width: 32px;
+    height: 32px;
+}
+
+.viewsContainer{
+    display: flex;
+    align-items: center;
+}
+
+.viewsCount{
+    font-size: x-large;
+    margin: 0px;
+    margin-right: 10px;
+}
+
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 30px;
+}
+
+.detailsTextContainer{
+    margin: 0px 30px;
+    width: 800px;
+}
+
+.detailsText{
+    font-size: large;
+}
+
+.commentsContainer{
+    margin: 0px 30px;
+}
+
+.commentsTitle{
+    margin-top: 50px;
+    font-size: x-large;
+    font-weight: bold;
+}
+.comment{
+    margin-bottom: 20px;
+}
+
+.inputContainer{
+    margin: 0px 30px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sendButton{
+    margin-left: 10px;
+}
+
+@media(max-width: 1000px){
+    .detailsContainer{
+        width: 600px;
+    }
+    .detailsTextContainer{
+        width: 400px;
+    }
+    .headerTitle{
+        font-size: xx-large;
+    }
+}
+
+
+@media(max-width: 600px){
+    .detailsContainer{
+        width: 400px;
+    }
+    .detailsTextContainer{
+        width: 300px;
+    }
+}

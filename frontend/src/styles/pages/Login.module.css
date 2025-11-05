@@ -1,0 +1,61 @@
+:global(body) {
+    background: linear-gradient(
+        90deg,
+        rgba(224, 85, 85, 1) 20%,
+        rgba(237, 147, 78, 1) 75%,
+        rgba(240, 175, 96, 1) 100%
+    );
+    margin-top: 30px;
+    font-family: sans-serif;
+}
+
+:global(h2) {
+    font-size: xx-large;
+    margin: 0;
+}
+
+:global(h5) {
+    font-size: x-large;
+    margin-top: 20px;
+    margin-bottom: 70px;
+    font-weight: lighter;
+}
+
+.card {
+    background-color: white;
+    width: 30%;
+    height: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
+    min-width: 450px;
+}
+
+.bottomText {
+    margin-top: 70px;
+    font-size: large;
+}
+
+:global(.gradient-text) {
+    background-image: linear-gradient(
+        90deg,
+        rgba(224, 85, 85, 1) 20%,
+        rgba(237, 147, 78, 1) 75%,
+        rgba(240, 175, 96, 1) 100%
+    );
+    font-weight: bold;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.logo {
+    width: 55%;
+    height: 55%;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}

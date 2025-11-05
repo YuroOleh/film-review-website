@@ -1,0 +1,63 @@
+.cardContainer {
+    background-color: white;
+    width: 400px;
+    height: 650px;
+    margin: 20px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.moviePoster {
+    width: 320px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 40px;
+    font-size: x-large;
+}
+
+.headerIcon {
+    width: 32px;
+    height: 32px;
+}
+
+.description {
+    font-size: large;
+    width: 280px;
+    margin: 0px 40px;
+}
+
+.bottomContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 40px;
+    margin-top: auto;
+    color: gray;
+}
+
+.bottomIcon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.duration {
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+}
