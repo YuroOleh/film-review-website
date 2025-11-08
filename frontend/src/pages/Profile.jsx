@@ -1,10 +1,8 @@
-import React from "react";
 import { useState } from "react";
 import styles from "../styles/pages/Profile.module.css";
 import Button from "../components/shared/Button";
 import Navbar from "../components/shared/Navbar";
 import avatar_placeholder from "../assets/avatar_placeholder.png";
-import poster_placeholder from "../assets/poster_placeholder.jpg";
 import Logout from "../components/Profile/Logout";
 import FavouriteMovies from "../components/Profile/FavouriteMovies";
 import FavouriteGenres from "../components/Profile/FavouriteGenres";

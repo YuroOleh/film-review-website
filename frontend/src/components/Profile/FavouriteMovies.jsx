@@ -42,9 +42,8 @@ function FavouriteMovies() {
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
     >
-      {[...Array(6)].map((_, i) => (
+      {[...Array(6)].map(() => (
         <Link
-          key={i}
           to={`/films/details`}
           onClick={handleClick}
           className={styles.filmLink}

@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../styles/pages/FilmDetails.module.css";
 import Button from "../components/shared/Button";
-import Input from "../components/shared/Input";
 import Navbar from "../components/shared/Navbar";
-import Review from "../components/Reviews/Review";
-import Discussion from "../components/Discussions/Discussion";
 import poster_placeholder from "../assets/poster_placeholder.jpg";
-import image_placeholder from "../assets/image_placeholder.jpg";
 import ReviewForm from "../components/Films/ReviewForm";
 import DiscussionForm from "../components/Films/DiscussionForm";
 import MoviePhotos from "../components/Films/MoviePhotos";

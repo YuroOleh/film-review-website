@@ -34,7 +34,7 @@ function FavouriteGenres() {
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
     >
-      {[...Array(4)].map((_, i) => (
+      {[...Array(4)].map(() => (
           <Genre label='Genre'/>
       ))}
     </div>

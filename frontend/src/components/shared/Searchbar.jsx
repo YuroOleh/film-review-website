@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../../styles/components/shared/Searchbar.module.css";
 
 function Searchbar({ placeholder, showFilter, FilterComponent, SortComponent }) {

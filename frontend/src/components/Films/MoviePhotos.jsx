@@ -34,7 +34,7 @@ function MoviePhotos() {
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
     >
-      {[...Array(10)].map((_, i) => (
+      {[...Array(10)].map(() => (
           <img className={styles.photosImg} draggable='false' src={image_placeholder} />
       ))}
     </div>

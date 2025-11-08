@@ -7,7 +7,7 @@ import Sort from "../components/shared/Sort";
 import { useState } from "react";
 
 export default function Discussions() {
-    const discussions = Array.from({ length: 100 }, (_, i) => <FilmDiscussion />);
+    const discussions = Array.from({ length: 100 }, () => <FilmDiscussion />);
     const discussionsPerPage = 6;
 
     const totalPages = Math.ceil(discussions.length / discussionsPerPage);
@@ -25,7 +25,7 @@ export default function Discussions() {
                 <div className={styles.search}>
                     <Searchbar placeholder="Search discussions by title..." SortComponent={
                 <Sort
-                    options={[,
+                    options={[
                     "Title",
                     "Date",
                     "Popularity"

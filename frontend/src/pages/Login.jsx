@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "../styles/pages/Login.module.css";
 import Button from "../components/shared/Button";
 import Input from "../components/shared/Input";

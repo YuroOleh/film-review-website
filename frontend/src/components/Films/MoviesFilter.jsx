@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../../styles/components/MoviesFilter.module.css";
 import ButtonSmall from "../shared/ButtonSmall.jsx"
 
 function MoviesFilter() {
-  const [showMenu, setShowMenu] = useState(true);
   const [ratingMin, setRatingMin] = useState(0);
   const [ratingMax, setRatingMax] = useState(5);
   const [lengthMin, setLengthMin] = useState("00:00:00");

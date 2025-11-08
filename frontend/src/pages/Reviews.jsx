@@ -7,7 +7,7 @@ import { useState } from "react";
 import Sort from "../components/shared/Sort";
 
 export default function Reviews() {
-    const reviews = Array.from({ length: 100 }, (_, i) => <FilmReview />);
+    const reviews = Array.from({ length: 100 }, () => <FilmReview />);
     const reviewsPerPage = 4;
 
     const totalPages = Math.ceil(reviews.length / reviewsPerPage);

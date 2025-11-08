@@ -7,7 +7,7 @@ import { useState } from "react";
 import Sort from "../components/shared/Sort";
 
 export default function News() {
-    const news = Array.from({ length: 100 }, (_, i) => <Article />);
+    const news = Array.from({ length: 100 }, () => <Article />);
     const newsPerPage = 6;
 
     const totalPages = Math.ceil(news.length / newsPerPage);

@@ -8,7 +8,7 @@ import MoviesFilter from "../components/Films/MoviesFilter";
 import Sort from "../components/shared/Sort";
 
 export default function Films() {
-    const films = Array.from({ length: 100 }, (_, i) => <MovieCard />);
+    const films = Array.from({ length: 100 }, () => <MovieCard />);
     const filmsPerPage = 9;
 
     const totalPages = Math.ceil(films.length / filmsPerPage);
