@@ -21,15 +21,17 @@ function App() {
       <Route path="/" element={<Navigate to="/films" replace />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/films" element={<ProtectedRoute><Films /></ProtectedRoute>} />
-      <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>}/> 
-      <Route path="/films/details" element={<ProtectedRoute><FilmDetails /></ProtectedRoute>} />
-      <Route path="/news" element={<ProtectedRoute><News /></ProtectedRoute>} />
-      <Route path="/news/details" element={<ProtectedRoute><NewsDetails /></ProtectedRoute>} />
-      <Route path="/reviews" element={<ProtectedRoute><Reviews /></ProtectedRoute>} />
-      <Route path="/reviews/details" element={<ProtectedRoute><ReviewDetails /></ProtectedRoute>} />
-      <Route path="/discussions" element={<ProtectedRoute><Discussions /></ProtectedRoute>} />
-      <Route path="/discussions/details" element={<ProtectedRoute><DiscussionDetails /></ProtectedRoute>} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/films" element={<Films />} />
+        <Route path="/films/details/:id" element={<FilmDetails />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/news/details" element={<NewsDetails />} />
+        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/reviews/details" element={<ReviewDetails />} />
+        <Route path="/discussions" element={<Discussions />} />
+        <Route path="/discussions/details" element={<DiscussionDetails />} />
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
