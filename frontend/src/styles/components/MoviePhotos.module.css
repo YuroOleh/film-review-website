@@ -1,0 +1,19 @@
+.photos{
+    display: flex;
+    gap: 25px;
+    overflow-x: scroll;
+    cursor: grab;
+    user-select: none;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+}
+
+.photos:active {
+  cursor: grabbing;
+}
+
+
+.photosImg{
+    width: 250px;
+    height: auto;
+}

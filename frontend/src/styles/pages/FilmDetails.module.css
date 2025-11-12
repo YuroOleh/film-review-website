@@ -115,11 +115,20 @@
 }
 
 .reviewsContainer {
-    display: flex;
+    margin-left: 20px;
+}
+
+.photosContainer{
+    margin-left: 20px;
+
 }
 
 .filmReview {
     margin-left: 20px;
+}
+
+.discussionButton{
+    margin-top: 20px;
 }
 
 .filmDiscussions {
@@ -129,4 +138,49 @@
 
 .discussionsContainer {
     display: flex;
+}
+
+@media (max-width: 1000px) {
+
+
+    .filmDetailsContainer{
+        width: 700px;
+    }
+
+    .detailsPoster {
+        width: 200px;
+    }
+
+    .filmDetailsDescription{
+        font-size: medium;
+    }
+    
+    .filmDetailsRatingP{
+        font-size: x-large;
+    }
+
+    .filmDetailsRatingImg{
+        width: 20px;
+        height: auto;
+    }
+
+    .filmDetailsTitle{
+        font-size: x-large;
+    }
+
+    .discussionsContainer{
+        flex-direction: column;
+    }
+
+    .reviewsContainer{
+        flex-direction: column;
+    }
+
+    .filmReview{
+        margin-bottom: 20px;
+    }
+
+    .detailsButton{
+        margin-top: 0px;
+    }
 }

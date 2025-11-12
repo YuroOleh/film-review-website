@@ -1,0 +1,26 @@
+.films {
+  display: flex;
+  gap: 25px;
+  overflow-x: scroll;
+  cursor: grab;
+  user-select: none;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.films:active {
+  cursor: grabbing;
+}
+
+.filmLink {
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.filmsImg {
+  width: 150px;
+  height: auto;
+  border-radius: 12px;
+  user-select: none;
+  pointer-events: none;
+}

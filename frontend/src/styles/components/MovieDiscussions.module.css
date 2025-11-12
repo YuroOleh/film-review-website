@@ -1,0 +1,20 @@
+.discussions {
+  display: flex;
+  gap: 25px;
+  overflow-x: scroll;
+  cursor: grab;
+  user-select: none;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.discussions:active {
+  cursor: grabbing;
+}
+
+.discussionLink {
+  flex-shrink: 0;
+  text-decoration: none;
+  color: black;
+}
+
