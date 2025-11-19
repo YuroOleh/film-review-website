@@ -5,9 +5,12 @@ import FilmDiscussion from "../components/Discussions/FilmDiscussion";
 import styles from "../styles/pages/Discussions.module.css";
 import Sort from "../components/shared/Sort";
 import { useState } from "react";
+import { useFetchDiscussions } from "../hooks/useFetchDiscussions";
 
 export default function Discussions() {
-    const discussions = Array.from({ length: 100 }, () => <FilmDiscussion />);
+    const [sortBy, setSortBy] = useState('date');
+    const [orderBy, setOrderBy] = useState('asc');
+    const { discussions, loading, error } = useFetchDiscussions(sortBy, orderBy)
     const discussionsPerPage = 6;
 
     const totalPages = Math.ceil(discussions.length / discussionsPerPage);
@@ -26,17 +29,22 @@ export default function Discussions() {
                     <Searchbar placeholder="Search discussions by title..." SortComponent={
                 <Sort
                     options={[
-                    "Title",
                     "Date",
+                    "Title",
                     "Popularity"
                     ]}
+
+                    onSortChange={setSortBy}
+                    onOrderChange={setOrderBy}
                 />}
             />
                 </div>
             </div>
             
             <div className={styles.discussions}>
-                {currentDiscussions}
+                {currentDiscussions.map(discussion => (
+                    <FilmDiscussion discussion={discussion} />
+                ))}
             </div>
             
 

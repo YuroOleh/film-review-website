@@ -2,17 +2,26 @@ import { useState } from "react";
 import styles from "../styles/pages/FilmDetails.module.css";
 import Button from "../components/shared/Button";
 import Navbar from "../components/shared/Navbar";
-import poster_placeholder from "../assets/poster_placeholder.jpg";
 import ReviewForm from "../components/Films/ReviewForm";
 import DiscussionForm from "../components/Films/DiscussionForm";
 import MoviePhotos from "../components/Films/MoviePhotos";
 import MovieDiscussions from "../components/Films/MovieDiscussions";
 import MovieReviews from "../components/Films/MovieReviews";
 import MovieGenres from "../components/Films/MovieGenres";
+import { useFetchFilm } from "../hooks/useFetchFilm";
+import { useFetchFilmReviews } from "../hooks/useFetchFilmReviews";
+import { useFetchFilmDiscussions } from "../hooks/useFetchFilmDiscussions";
+import { useParams } from "react-router-dom";
+import { useFilmRating } from "../hooks/useFilmRating";
 
 export default function FilmDetails() {
+    const { id } = useParams();
+    const { film, filmLoading, filmError } = useFetchFilm(id);
+    const { reviews, reviewsLoading, reviewsError } = useFetchFilmReviews(film.id);
+    const { discussions, discussionsLoading, discussionsError } = useFetchFilmDiscussions(film.id);
     const [showReviewForm, setShowReviewForm] = useState(false)
     const [showDiscussionForm, setShowDiscussionForm] = useState(false)
+    const { rating, loading } = useFilmRating(film.id);
 
     return (
         <>
@@ -21,26 +30,27 @@ export default function FilmDetails() {
                 <div className={styles.filmDetailsContainer}>
                     <div className={styles.filmDetailsHeaderMain}>
                         <div>
-                            <img className={styles.detailsPoster} src={poster_placeholder} />
+                            <img className={styles.detailsPoster} src={`/${film.poster}`} />
                         </div>
                         <div className={styles.filmDescriptionContainer}>
-                            <div className={styles.filmDetailsHeader}>
-                                <p className={styles.filmDetailsTitle}>Lorem Ipsum</p>
-                                <div className={styles.filmDetailsRating}>
-                                    <p className={styles.filmDetailsRatingP}>5.0</p>
-                                    <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
-                                    <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
-                                    <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
-                                    <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
-                                    <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
+                            <div>
+                                <div className={styles.filmDetailsHeader}>
+                                    <p className={styles.filmDetailsTitle}>{film.title}</p>
+                                    <div className={styles.filmDetailsRating}>
+                                        <p className={styles.filmDetailsRatingP}>{loading ? "..." : rating.toFixed(1)}</p>
+                                        <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
+                                        <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
+                                        <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
+                                        <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
+                                        <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
+                                    </div>
                                 </div>
+                                <p className={`${styles.filmDetailsDescription} ${styles.filmDetailsMainDescription}`}>
+                                    <span className={styles.filmDetailsSection}>Description: </span>
+                                    {film.description}
+                                </p>
                             </div>
-                            <p className={`${styles.filmDetailsDescription} ${styles.filmDetailsMainDescription}`}>
-                                <span className={styles.filmDetailsSection}>Description: </span>
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
-                                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo 
-                                inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                            </p>
+                            
                             <div className={styles.filmDetailsBottom}>
                                 <div>
                                     <p className={styles.filmDetailsDescription}>
@@ -64,7 +74,7 @@ export default function FilmDetails() {
                     </div>
 
                     <div className={styles.filmDetailsGenres}>
-                        <MovieGenres/>
+                        <MovieGenres genres={film.genres}/>
                     </div>
 
                     <p className={styles.detailsLabel}>Photos</p>
@@ -76,7 +86,7 @@ export default function FilmDetails() {
                     <div></div>
 
                     <div className={styles.detailsButton}>
-                        <MovieDiscussions/>
+                        <MovieDiscussions discussions={discussions}/>
                         <div className={styles.discussionButton}>
                             <Button label="Start discussion" onClick = {() => setShowDiscussionForm(true)}/>
                         </div>
@@ -84,7 +94,7 @@ export default function FilmDetails() {
 
                     <p className={styles.detailsLabel}>Reviews</p>
                     <div className={styles.reviewsContainer}>
-                        <MovieReviews/>
+                        <MovieReviews reviews={reviews}/>
                     </div>
                     <div className={styles.detailsButton}>
                         <Button label="Write review" onClick = {() => setShowReviewForm(true)}/>
@@ -94,11 +104,11 @@ export default function FilmDetails() {
             
 
             {showReviewForm && (
-                <ReviewForm onClose = {() => setShowReviewForm(false)}/>
+                <ReviewForm onClose = {() => setShowReviewForm(false)} filmId={film.id}/>
             )}
 
             {showDiscussionForm && (
-                <DiscussionForm onClose = {() => setShowDiscussionForm(false)}/>
+                <DiscussionForm onClose = {() => setShowDiscussionForm(false)} filmId={film.id}/>
             )}
         </>
     );

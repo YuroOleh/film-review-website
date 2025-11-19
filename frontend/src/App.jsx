@@ -26,11 +26,11 @@ function App() {
         <Route path="/films/details/:id" element={<FilmDetails />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/news" element={<News />} />
-        <Route path="/news/details" element={<NewsDetails />} />
+        <Route path="/news/details/:id" element={<NewsDetails />} />
         <Route path="/reviews" element={<Reviews />} />
-        <Route path="/reviews/details" element={<ReviewDetails />} />
+        <Route path="/reviews/details/:id" element={<ReviewDetails />} />
         <Route path="/discussions" element={<Discussions />} />
-        <Route path="/discussions/details" element={<DiscussionDetails />} />
+        <Route path="/discussions/details/:id" element={<DiscussionDetails />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

@@ -1,30 +1,37 @@
 import styles from "../../styles/components/MovieCard.module.css";
-import poster_placeholder from "../../assets/poster_placeholder.jpg";
 import { Link } from "react-router-dom";
+import { useFilmRating } from "../../hooks/useFilmRating";
 
-function MovieCard() {
+function MovieCard({ film }) {
+    const date = new Date(film.published);
+    const formatted = date.toLocaleDateString("uk-UA");
+
+    const { rating, loading } = useFilmRating(film.id);
+
     return (
-        <Link to="/films/details" className={styles.link}>
+        <Link to={`/films/details/${film.id}`} className={styles.link}>
             <div className={styles.cardContainer}>
-                <img className={styles.moviePoster} src={poster_placeholder} alt="" />
+                <img className={styles.moviePoster} src={film.poster} alt={film.title} />
                 <div className={styles.headerContainer}>
-                    <h2>Lorem Ipsum</h2>
+                    <h2 className={styles.headerContainerH2}>{film.title}</h2>
                     <div className={styles.rating}>
-                        <h2>5.0</h2>
-                        <img className={styles.headerIcon} src="icons/star.png" alt="" />
+                        <h2 className={styles.headerContainerH2}>
+                            {loading ? "..." : rating.toFixed(1)}
+                        </h2>
+                        <img className={styles.headerIcon} src="icons/star.png" alt="Star" />
                     </div>
                 </div>
                 <h5 className={styles.description}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    {film.description}
                 </h5>
                 <div className={styles.bottomContainer}>
                     <div className={styles.duration}>
-                        <img className={styles.bottomIcon} src="icons/clock.png" alt="" />
-                        <p>1:30:00</p>
+                        <img className={styles.bottomIcon} src="icons/clock.png" alt="Clock" />
+                        <p>{film.length}</p>
                     </div>
                     <div className={styles.date}>
-                        <img className={styles.bottomIcon} src="icons/calendar.png" alt="" />
-                        <p>01.01.25</p>
+                        <img className={styles.bottomIcon} src="icons/calendar.png" alt="Calendar" />
+                        <p>{formatted}</p>
                     </div>
                 </div>
             </div>

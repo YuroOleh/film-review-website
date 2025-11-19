@@ -2,27 +2,28 @@ import styles from "../../styles/components/Article.module.css";
 import image_placeholder from "../../assets/image_placeholder.jpg";
 import { Link } from "react-router-dom";
 
-function Article() {
+function Article({article}) {
+    const date = new Date(article.date);
+    const formatted = date.toLocaleDateString("uk-UA")
+
     return (
         <> 
-            <Link to="/news/details" className={styles.link}>
+            <Link to={`/news/details/${article.id}`} className={styles.link}>
                 <div className={styles.articleContainer}>
                     <img className={styles.articleImg} src={image_placeholder} alt="" />
                     <div className={styles.articleSideContainer}>
                         <div className={styles.headerContainer}>
-                        <p className={styles.articleTitle}>Lorem Ipsum</p>
+                        <p className={styles.articleTitle}>{article.title}</p>
                             <div className={styles.viewsContainer}>
-                                <p className={styles.viewsCount}>143</p>
+                                <p className={styles.viewsCount}>{article.views}</p>
                                 <img className={styles.viewsIcon} src="/icons/view.png" alt="" />
                             </div> 
                         </div>
                         <p>
-                        Sed ut perspiciatis unde omnis iste natus error
-                        sit voluptatem accusantiumdoloremque laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
+                        {article.shortDescription}
                         </p>
                         <div className={styles.dateContainer}>
-                            <p className={styles.date}>01.01.2000</p>
+                            <p className={styles.date}>{formatted}</p>
                             <img className={styles.calendarIcon} src="/icons/calendar.png" alt="" />
                         </div>
                     </div>

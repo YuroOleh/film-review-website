@@ -1,32 +1,48 @@
 import styles from "../../styles/components/FilmDiscussion.module.css";
 import poster_placeholder from "../../assets/poster_placeholder.jpg";
 import avatar_placeholder from "../../assets/avatar_placeholder.png";
-import Comment from "../shared/Comment";
 import { Link } from "react-router-dom";
+import { useFetchFilm } from "../../hooks/useFetchFilm";
+import { useUser } from "../../hooks/useUser";
+import { useMessagesCount} from "../../hooks/useMessagesCount";
+import { useUniqueUsersCount} from "../../hooks/useUniqueUsersCount";
 
-function FilmDiscussion() {
+function FilmDiscussion({ discussion }) {
+    const { film, loadingFilm, errorFilm } = useFetchFilm(discussion.filmId);
+    const { user, loadingUser, errorUser } = useUser(discussion.userId);
+
+    const { count: messageCount, loading: loadingMessages } = useMessagesCount(discussion.id);
+    const { count: uniqueUsersCount, loading: loadingUsers } = useUniqueUsersCount(discussion.id);
+
     return (
-        <>  
-            <Link to="/discussions/details" className={styles.link}>
+        <>
+            <Link to={`/discussions/details/${discussion.id}`} className={styles.link}>
                 <div className={styles.container}>
                     <div className={styles.filmContainer}>
-                        <img className={styles.filmContainerImg} src={poster_placeholder} />
-                        <p className={styles.filmContainerP}>Lorem Ipsum</p>
+                        <img className={styles.filmContainerImg} src={film?.poster || poster_placeholder} />
+                        <p className={styles.filmContainerP}>{film?.title || "Film"}</p>
                     </div>
                     <div className={styles.commentsContainer}>
-                        <p className={styles.commentsContainerP}>Where this scene was filmed?</p>
-                        <div className={styles.comment}><Comment text="I don't know" /></div>
-                        <div className={styles.comment}><Comment text="London maybe?"/></div>
-                        <div className={styles.comment}><Comment text="Its Manchester, i lived there for three years"/></div>
-                    </div>
-                    <div className={styles.infoContainer}>
+                        <p className={styles.commentsContainerP}>{discussion.title}</p>
+
                         <div className={styles.userInfo}>
-                            <img className={styles.userInfoImg} src={avatar_placeholder}/>
-                            <p className={styles.userInfoP}>User77</p> 
+                            <img className={styles.userInfoImg} src={avatar_placeholder} />
+                            <p className={styles.userInfoP}>{user?.fullName || "User"}</p>
                         </div>
+
                         <div className={styles.commentsInfo}>
-                            <img className={styles.commentsInfoImg} src="/icons/comment.png"/>
-                            <p className={styles.commentsInfoP}>32</p>
+                            <div className={styles.commentsInfoUsers}>
+                                <img className={styles.commentsInfoImg} src="/icons/user.png" />
+                                <p className={styles.commentsInfoP}>
+                                    {loadingUsers ? "..." : uniqueUsersCount}
+                                </p>
+                            </div>
+                            <div className={styles.commentsInfoMessages}>
+                                <img className={styles.commentsInfoImg} src="/icons/comment.png" />
+                                <p className={styles.commentsInfoP}>
+                                    {loadingMessages ? "..." : messageCount}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
 }
 
 .headerTitle{
-    font-size: xxx-large;
+    font-size: xx-large;
     font-weight: bold;
     margin: 0px;
 
@@ -34,6 +34,7 @@
 .viewsContainer{
     display: flex;
     align-items: center;
+    padding-left: 50px;
 }
 
 .viewsCount{

@@ -5,9 +5,12 @@ import Article from "../components/News/Article";
 import styles from "../styles/pages/News.module.css";
 import { useState } from "react";
 import Sort from "../components/shared/Sort";
+import { useFetchNews } from "../hooks/useFetchNews";
 
 export default function News() {
-    const news = Array.from({ length: 100 }, () => <Article />);
+    const [sortBy, setSortBy] = useState('title');
+    const [orderBy, setOrderBy] = useState('asc');
+    const { news, loading, error } = useFetchNews(sortBy, orderBy);
     const newsPerPage = 6;
 
     const totalPages = Math.ceil(news.length / newsPerPage);
@@ -31,6 +34,9 @@ export default function News() {
                     "Comments",
                     "Date"
                     ]}
+
+                    onSortChange={setSortBy}
+                    onOrderChange={setOrderBy}
                 />}
             />
                 </div>
@@ -38,7 +44,9 @@ export default function News() {
             
             
             <div className={styles.articles}>
-                {currentNews}
+                {currentNews.map(article => (
+                    <Article article={article} />
+                ))}
             </div>
             
 

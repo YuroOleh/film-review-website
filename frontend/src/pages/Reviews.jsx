@@ -5,9 +5,12 @@ import Pagination from "../components/shared/Pagination";
 import FilmReview from "../components/Reviews/FilmReview";
 import { useState } from "react";
 import Sort from "../components/shared/Sort";
+import { useFetchReviews } from "../hooks/useFetchReviews";
 
 export default function Reviews() {
-    const reviews = Array.from({ length: 100 }, () => <FilmReview />);
+    const [sortBy, setSortBy] = useState('date');
+    const [orderBy, setOrderBy] = useState('asc');
+    const { reviews, loading, error } = useFetchReviews(sortBy, orderBy);
     const reviewsPerPage = 4;
 
     const totalPages = Math.ceil(reviews.length / reviewsPerPage);
@@ -24,19 +27,24 @@ export default function Reviews() {
 
             <div className={styles.searchbarContainer}>
                 <div className={styles.searchbar}><Searchbar placeholder="Search review..." SortComponent={
-                <Sort
+                    <Sort
                     options={[
-                    "Reactions",
-                    "User rating",
-                    "Date",
+                        "Date",
+                        "Likes",
+                        "Dislikes"
                     ]}
-                    />}
+                    onSortChange={setSortBy}
+                    onOrderChange={setOrderBy}
+                    />
+                }
                 /> 
             </div>
             </div>
             
             <div className={styles.reviewsContainer}>
-                {currentReviews}
+                {currentReviews.map(review => (
+                    <FilmReview review={review} />
+                ))}
             </div>
             
             <div className={styles.paginationContainer}>
