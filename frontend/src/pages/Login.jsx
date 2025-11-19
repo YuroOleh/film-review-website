@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "../styles/pages/Login.module.css";
 import Button from "../components/shared/Button";
 import Input from "../components/shared/Input";
@@ -16,7 +15,10 @@ export default function Login() {
             <Input placeholder="Email address" />
             <Input placeholder="Password" type="password" />
 
-            <Button label="Login" />
+            <Link to="/films">
+                <Button label="Login" />
+            </Link>
+            
 
             <p className={styles.bottomText}>
                 Don't have an account?{" "}

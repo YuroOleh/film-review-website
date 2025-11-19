@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../styles/pages/FilmDetails.module.css";
 import Button from "../components/shared/Button";
-import Input from "../components/shared/Input";
 import Navbar from "../components/shared/Navbar";
-import Review from "../components/Reviews/Review";
-import Discussion from "../components/Discussions/Discussion";
 import poster_placeholder from "../assets/poster_placeholder.jpg";
-import image_placeholder from "../assets/image_placeholder.jpg";
+import ReviewForm from "../components/Films/ReviewForm";
+import DiscussionForm from "../components/Films/DiscussionForm";
+import MoviePhotos from "../components/Films/MoviePhotos";
+import MovieDiscussions from "../components/Films/MovieDiscussions";
+import MovieReviews from "../components/Films/MovieReviews";
+import MovieGenres from "../components/Films/MovieGenres";
 
 export default function FilmDetails() {
+    const [showReviewForm, setShowReviewForm] = useState(false)
+    const [showDiscussionForm, setShowDiscussionForm] = useState(false)
+
     return (
         <>
             <Navbar />
@@ -59,41 +64,42 @@ export default function FilmDetails() {
                     </div>
 
                     <div className={styles.filmDetailsGenres}>
-                        <p className={styles.filmDetailsGenresP} >Fantasy</p>
-                        <p className={styles.filmDetailsGenresP} >Romance</p>
-                        <p className={styles.filmDetailsGenresP} >Action</p>
-                        <p className={styles.filmDetailsGenresP} >Comedy</p>
+                        <MovieGenres/>
                     </div>
 
                     <p className={styles.detailsLabel}>Photos</p>
-                    <div>
-                        <img className={styles.detailsPhoto} src={image_placeholder} />
-                        <img className={styles.detailsPhoto} src={image_placeholder} />
-                        <img className={styles.detailsPhoto} src={image_placeholder} />
-                        <img className={styles.detailsPhoto} src={image_placeholder} />
+                    <div className={styles.photosContainer}>
+                        <MoviePhotos/>
                     </div>
 
                     <p className={styles.detailsLabel}>Discussions</p>
                     <div></div>
 
                     <div className={styles.detailsButton}>
-                        <div className={styles.discussionsContainer}>
-                            <div className={styles.filmDiscussions}><Discussion /></div>
-                            <div className={styles.filmDiscussions}><Discussion /></div>
+                        <MovieDiscussions/>
+                        <div className={styles.discussionButton}>
+                            <Button label="Start discussion" onClick = {() => setShowDiscussionForm(true)}/>
                         </div>
-                        <Button label="Start discussion" />
                     </div>
 
                     <p className={styles.detailsLabel}>Reviews</p>
                     <div className={styles.reviewsContainer}>
-                        <div className={styles.filmReview}><Review /></div>
-                        <div className={styles.filmReview}><Review /></div>
+                        <MovieReviews/>
                     </div>
                     <div className={styles.detailsButton}>
-                        <Button label="Write review" />
+                        <Button label="Write review" onClick = {() => setShowReviewForm(true)}/>
                     </div>
                 </div>
             </div>
+            
+
+            {showReviewForm && (
+                <ReviewForm onClose = {() => setShowReviewForm(false)}/>
+            )}
+
+            {showDiscussionForm && (
+                <DiscussionForm onClose = {() => setShowDiscussionForm(false)}/>
+            )}
         </>
     );
 }

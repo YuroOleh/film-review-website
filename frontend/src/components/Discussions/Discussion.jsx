@@ -3,7 +3,7 @@ import avatar_placeholder from "../../assets/avatar_placeholder.png";
 
 function Discussion() {
     return (
-        <div className={styles.discussionCard}>
+        <div draggable='false' className={styles.discussionCard}>
             <div className={styles.discussionTitle}>
                 <p>Where this scene was filmed?</p>
             </div>

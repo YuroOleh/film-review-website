@@ -1,0 +1,27 @@
+.sortMenu {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px 20px;
+  min-width: 200px;
+}
+
+.label {
+  font-weight: bold;
+  font-size: large;
+  margin-right: 10px;
+}
+
+.select {
+  margin-top: 10px;
+  font-size: medium;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+}
+
+.button{
+    margin-top: 10px;
+}
