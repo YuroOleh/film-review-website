@@ -11,7 +11,8 @@ import { useFetchFilms } from "../hooks/useFetchFilms";
 export default function Films() {
     const [sortBy, setSortBy] = useState('title');
     const [orderBy, setOrderBy] = useState('asc');
-    const { films, loading, error } = useFetchFilms(sortBy, orderBy);
+    const [search, setSearch] = useState('');
+    const { films, loading, error } = useFetchFilms(sortBy, orderBy, search);
     const filmsPerPage = 9;
 
     const totalPages = Math.ceil(films.length / filmsPerPage);
@@ -37,6 +38,8 @@ export default function Films() {
                     onSortChange={setSortBy}
                     onOrderChange={setOrderBy}
                 />}
+
+                onSearch={setSearch}
             />
 
             <div className={styles.filmList}>

@@ -9,6 +9,8 @@ import image_placeholder from "../assets/image_placeholder.jpg";
 import { useFetchArticle } from "../hooks/useFetchArticle";
 import { useFetchComments } from "../hooks/useFetchComments";
 import { useWriteComment } from "../hooks/useWriteComment";
+import { useMarkAsViewed } from "../hooks/useMarkAsViewed";
+import { useEffect } from "react";
 
 export default function News() {
   const { id: articleId } = useParams();
@@ -18,8 +20,15 @@ export default function News() {
   const { article } = useFetchArticle(articleId);
   const { comments } = useFetchComments(articleId);
   const { writeComment } = useWriteComment();
+  const { markAsViewed } = useMarkAsViewed();
 
   const [newComment, setNewComment] = useState("");
+
+  useEffect(() => {
+    if (articleId && userId) {
+      markAsViewed(articleId, userId);
+    }
+  }, [articleId, userId, markAsViewed]);
 
   async function handleSend() {
     if (!newComment.trim()) return;

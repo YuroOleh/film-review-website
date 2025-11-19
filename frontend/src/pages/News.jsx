@@ -10,7 +10,8 @@ import { useFetchNews } from "../hooks/useFetchNews";
 export default function News() {
     const [sortBy, setSortBy] = useState('title');
     const [orderBy, setOrderBy] = useState('asc');
-    const { news, loading, error } = useFetchNews(sortBy, orderBy);
+    const [search, setSearch] = useState('');
+    const { news, loading, error } = useFetchNews(sortBy, orderBy, search);
     const newsPerPage = 6;
 
     const totalPages = Math.ceil(news.length / newsPerPage);
@@ -26,7 +27,7 @@ export default function News() {
             <Navbar/>
             <div className={styles.header}>
                 <div className={styles.search}>
-                    <Searchbar placeholder="Search news by film..." SortComponent={
+                    <Searchbar placeholder="Search news..." SortComponent={
                 <Sort
                     options={[
                     "Title",
@@ -38,6 +39,8 @@ export default function News() {
                     onSortChange={setSortBy}
                     onOrderChange={setOrderBy}
                 />}
+
+                onSearch={setSearch}
             />
                 </div>
             </div>

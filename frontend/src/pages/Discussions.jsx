@@ -10,7 +10,8 @@ import { useFetchDiscussions } from "../hooks/useFetchDiscussions";
 export default function Discussions() {
     const [sortBy, setSortBy] = useState('date');
     const [orderBy, setOrderBy] = useState('asc');
-    const { discussions, loading, error } = useFetchDiscussions(sortBy, orderBy)
+    const [search, setSearch] = useState('')
+    const { discussions, loading, error } = useFetchDiscussions(sortBy, orderBy, search)
     const discussionsPerPage = 6;
 
     const totalPages = Math.ceil(discussions.length / discussionsPerPage);
@@ -37,6 +38,8 @@ export default function Discussions() {
                     onSortChange={setSortBy}
                     onOrderChange={setOrderBy}
                 />}
+
+                onSearch={setSearch}
             />
                 </div>
             </div>

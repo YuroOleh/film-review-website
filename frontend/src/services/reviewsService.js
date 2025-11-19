@@ -1,10 +1,15 @@
 const API_URL = "http://localhost:3000/reviews";
 
 export const reviewsService = {
-  async getAll(sortBy='date', orderBy='desc') {
-    const sort = orderBy === 'desc' ? `-${sortBy}` : sortBy;
-    const res = await fetch(API_URL + "?_sort=" + sort);
-    if (!res.ok) throw new Error("Reviews were not found...");
+  async getAll(sortBy='date', orderBy='desc', search='') {
+    let query = `?_sort=${sortBy}&_order=${orderBy}`;
+    if (search) {
+      query += `&text_like=${encodeURIComponent(search)}`;
+    }
+
+    const res = await fetch(`${API_URL}${query}`);
+    if (!res.ok) throw new Error("Films were not found...");
+    console.log("FETCHING:", `${API_URL}${query}`);
     return res.json();
   },
 

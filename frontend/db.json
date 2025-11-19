@@ -342,6 +342,155 @@
       "text": "awwad",
       "date": "2025-11-19",
       "id": 2
+    },
+    {
+      "discussionId": "6",
+      "userId": 2,
+      "text": "adad",
+      "date": "2025-11-19",
+      "id": 3
+    }
+  ],
+  "newsViews": [
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 1
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 2
+    },
+    {
+      "newsId": "5",
+      "userId": 2,
+      "id": 3
+    },
+    {
+      "newsId": "5",
+      "userId": 2,
+      "id": 4
+    },
+    {
+      "newsId": "2",
+      "userId": 2,
+      "id": 5
+    },
+    {
+      "newsId": "2",
+      "userId": 2,
+      "id": 6
+    },
+    {
+      "newsId": "1",
+      "userId": 2,
+      "id": 7
+    },
+    {
+      "newsId": "1",
+      "userId": 2,
+      "id": 8
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 9
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 10
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 11
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 12
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 13
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 14
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 15
+    },
+    {
+      "newsId": "3",
+      "userId": 2,
+      "id": 16
+    },
+    {
+      "newsId": "3",
+      "userId": 2,
+      "id": 17
+    },
+    {
+      "newsId": "3",
+      "userId": 2,
+      "id": 18
+    },
+    {
+      "newsId": "3",
+      "userId": 2,
+      "id": 19
+    },
+    {
+      "newsId": "3",
+      "userId": 2,
+      "id": 20
+    },
+    {
+      "newsId": "3",
+      "userId": 2,
+      "id": 21
+    },
+    {
+      "newsId": "3",
+      "userId": 2,
+      "id": 22
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 23
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 24
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 25
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 26
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 27
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 28
     }
   ]
 }

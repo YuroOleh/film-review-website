@@ -10,7 +10,8 @@ import { useFetchReviews } from "../hooks/useFetchReviews";
 export default function Reviews() {
     const [sortBy, setSortBy] = useState('date');
     const [orderBy, setOrderBy] = useState('asc');
-    const { reviews, loading, error } = useFetchReviews(sortBy, orderBy);
+    const [search, setSearch] = useState('')
+    const { reviews, loading, error } = useFetchReviews(sortBy, orderBy, search);
     const reviewsPerPage = 4;
 
     const totalPages = Math.ceil(reviews.length / reviewsPerPage);
@@ -37,6 +38,8 @@ export default function Reviews() {
                     onOrderChange={setOrderBy}
                     />
                 }
+
+                onSearch={setSearch}
                 /> 
             </div>
             </div>

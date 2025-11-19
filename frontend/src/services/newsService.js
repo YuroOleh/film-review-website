@@ -1,11 +1,15 @@
 const API_URL = "http://localhost:3000/news";
 
 export const newsService = {
-  async getAll(sortBy='title', orderBy='asc') {
-    const sort = orderBy === 'desc' ? `-${sortBy}` : sortBy;
-    const res = await fetch(API_URL + "?_sort=" + sort);
-    if (!res.ok) throw new Error("News were not found...");
-    console.log("FETCHING: " + API_URL + "?_sort=" + sortBy + "&_order=" + orderBy);
+  async getAll(sortBy='title', orderBy='asc', search='') {
+    let query = `?_sort=${sortBy}&_order=${orderBy}`;
+    if (search) {
+      query += `&title_like=${encodeURIComponent(search)}`;
+    }
+
+    const res = await fetch(`${API_URL}${query}`);
+    if (!res.ok) throw new Error("Films were not found...");
+    console.log("FETCHING:", `${API_URL}${query}`);
     return res.json();
   },
 

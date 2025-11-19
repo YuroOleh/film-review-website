@@ -1,10 +1,14 @@
+import { useViewsCount } from "../../hooks/useViewsCount";
 import styles from "../../styles/components/Article.module.css";
 import image_placeholder from "../../assets/image_placeholder.jpg";
 import { Link } from "react-router-dom";
 
-function Article({article}) {
+function Article({ article }) {
     const date = new Date(article.date);
-    const formatted = date.toLocaleDateString("uk-UA")
+    const formatted = date.toLocaleDateString("uk-UA");
+
+    const { views, loading } = useViewsCount(article.id);
+ 
 
     return (
         <> 
@@ -13,14 +17,16 @@ function Article({article}) {
                     <img className={styles.articleImg} src={image_placeholder} alt="" />
                     <div className={styles.articleSideContainer}>
                         <div className={styles.headerContainer}>
-                        <p className={styles.articleTitle}>{article.title}</p>
+                            <p className={styles.articleTitle}>{article.title}</p>
                             <div className={styles.viewsContainer}>
-                                <p className={styles.viewsCount}>{article.views}</p>
+                                <p className={styles.viewsCount}>
+                                    {loading ? "..." : views}
+                                </p>
                                 <img className={styles.viewsIcon} src="/icons/view.png" alt="" />
                             </div> 
                         </div>
                         <p>
-                        {article.shortDescription}
+                            {article.shortDescription}
                         </p>
                         <div className={styles.dateContainer}>
                             <p className={styles.date}>{formatted}</p>
