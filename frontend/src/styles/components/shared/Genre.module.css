@@ -1,7 +1,9 @@
 .genre {
-    font-size: large;
-    font-weight: bold;
-    background-color: lightgray;
-    padding: 15px 40px;
-    border-radius: 30px;
+  display: inline-block;
+  font-size: large;
+  font-weight: bold;
+  background-color: lightgray;
+  padding: 15px 20px;
+  border-radius: 30px;
+  white-space: nowrap;
 }

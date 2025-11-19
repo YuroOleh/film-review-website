@@ -1,11 +1,13 @@
 import styles from "../../styles/components/shared/Input.module.css";
 
-function Input(props) {
+function Input({ value, onChange, type = "text", placeholder }) {
   return (
     <input
       className={styles.customInput}
-      type={props.type}
-      placeholder={props.placeholder}
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
     />
   );
 }

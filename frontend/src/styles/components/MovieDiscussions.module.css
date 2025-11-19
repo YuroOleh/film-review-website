@@ -18,3 +18,7 @@
   color: black;
 }
 
+.discussions::-webkit-scrollbar {
+  display: none; 
+}
+

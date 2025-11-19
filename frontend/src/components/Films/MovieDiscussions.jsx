@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "../../styles/components/MovieDiscussions.module.css";
 import Discussion from "../Discussions/Discussion";
 
-function MovieDiscussions() {
+function MovieDiscussions({discussions=[]}) {
   const scrollRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -42,15 +42,14 @@ function MovieDiscussions() {
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
     >
-      {[...Array(6)].map((_, i) => (
+      {discussions.map((discussion) => (
         <Link
-          key={i}
-          to={`/discussions/details`}
+          to={`/discussions/details/${discussion.id}`}
           onClick={handleClick}
           className={styles.discussionLink}
           draggable="false"
         >
-          <Discussion/>
+          <Discussion discussion={discussion}/>
         </Link>
       ))}
     </div>

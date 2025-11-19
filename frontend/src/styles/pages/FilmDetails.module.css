@@ -18,6 +18,9 @@
     border-radius: 20px;
     width: 60%;
     padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .filmDetailsRating {
@@ -66,6 +69,7 @@
 .filmDetailsBottom {
     display: flex;
     justify-content: space-between;
+    margin-top: auto;
 }
 
 .addToWatchlist {
