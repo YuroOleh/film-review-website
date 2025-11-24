@@ -1,10 +1,13 @@
 const API_URL = "http://localhost:3000/reviews";
 
 export const reviewsService = {
-  async getAll(sortBy='date', orderBy='desc', search='') {
+  async getAll(sortBy='date', orderBy='desc', search='', userId='') {
     let query = `?_sort=${sortBy}&_order=${orderBy}`;
     if (search) {
       query += `&text_like=${encodeURIComponent(search)}`;
+    }
+    if (userId){
+      query += `&userId=${userId}`;
     }
 
     const res = await fetch(`${API_URL}${query}`);

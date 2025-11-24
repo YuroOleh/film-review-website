@@ -8,6 +8,7 @@ import styles from "../styles/pages/DiscussionDetails.module.css";
 import { useFetchMessages } from "../hooks/useFetchMessages";
 import { useFetchDiscussion } from "../hooks/useFetchDiscussion";
 import { useWriteMessage } from "../hooks/useWriteMessage";
+import Message from "../components/shared/Message";
 
 export default function DiscussionDetails() {
   const { id: discussionId } = useParams();
@@ -31,6 +32,20 @@ export default function DiscussionDetails() {
     await writeMessage(discussionId, userId, newMessage);
     setNewMessage("");
   }
+
+  if (discussion.length===0) {
+        return (
+            <>
+                <Navbar />
+                <br />
+                <br />
+                <Message
+                    messageTitle="Discussion does not exist..."
+                    messageText="Check other discussions on the discussions page"
+                />
+            </>
+        );
+    }
 
   return (
     <>

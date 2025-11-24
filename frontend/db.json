@@ -491,6 +491,49 @@
       "newsId": "4",
       "userId": 2,
       "id": 28
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 29
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 30
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 31
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 32
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 33
+    },
+    {
+      "newsId": "4",
+      "userId": 2,
+      "id": 34
+    }
+  ],
+  "watchlist": [],
+  "favourites": [
+    {
+      "userId": 2,
+      "filmId": "2",
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "filmId": "1",
+      "id": 4
     }
   ]
 }

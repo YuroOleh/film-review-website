@@ -6,6 +6,7 @@ import styles from "../styles/pages/News.module.css";
 import { useState } from "react";
 import Sort from "../components/shared/Sort";
 import { useFetchNews } from "../hooks/useFetchNews";
+import Message from "../components/shared/Message";
 
 export default function News() {
     const [sortBy, setSortBy] = useState('title');
@@ -51,6 +52,9 @@ export default function News() {
                     <Article article={article} />
                 ))}
             </div>
+
+            {error && <Message messageTitle='Something went wrong...' messageText='It appears that the server is currently unavailable'/>}
+            {!error && news.length===0 && <Message messageTitle='No news found...' messageText='There are no news matching your search criteria '/>}
             
 
             <div className={styles.pagination}>

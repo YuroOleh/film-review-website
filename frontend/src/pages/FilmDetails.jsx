@@ -13,103 +13,134 @@ import { useFetchFilmReviews } from "../hooks/useFetchFilmReviews";
 import { useFetchFilmDiscussions } from "../hooks/useFetchFilmDiscussions";
 import { useParams } from "react-router-dom";
 import { useFilmRating } from "../hooks/useFilmRating";
+import { useAddFilmToWatchlist } from "../hooks/useAddFilmToWatchlist";
+import { useCheckWatchlist } from "../hooks/useCheckWatchlist";
+import { useDeleteFilmFromWatchlist } from "../hooks/useDeleteFilmFromWatchlist";
+import { useAddFilmToFavourites } from "../hooks/useAddFilmToFavourites";
+import { useCheckFavourites } from "../hooks/useCheckFavourites";
+import { useDeleteFilmFromFavourites } from "../hooks/useDeleteFilmFromFavourites";
+import Message from "../components/shared/Message";
 
 export default function FilmDetails() {
     const { id } = useParams();
     const { film, filmLoading, filmError } = useFetchFilm(id);
-    const { reviews, reviewsLoading, reviewsError } = useFetchFilmReviews(film.id);
-    const { discussions, discussionsLoading, discussionsError } = useFetchFilmDiscussions(film.id);
+    const { reviews, reviewsLoading, reviewsError } = useFetchFilmReviews(film?.id);
+    const { discussions, discussionsLoading, discussionsError } = useFetchFilmDiscussions(film?.id);
+    const user = JSON.parse(localStorage.getItem('user'))
     const [showReviewForm, setShowReviewForm] = useState(false)
     const [showDiscussionForm, setShowDiscussionForm] = useState(false)
-    const { rating, loading } = useFilmRating(film.id);
+    const { rating, ratingLoading } = useFilmRating(film?.id);
+    const { addFilm, addWatchlistLoading, addWatchlistError } = useAddFilmToWatchlist();
+    const { addFilm:addFilmToFavourites, addFavouritesLoading, addFavouritesError } = useAddFilmToFavourites();
+    const {isInWatchlist, watchlistLoading, watchlistError} = useCheckWatchlist(user.id, film?.id)
+    const {isInFavourites, favouritesLoading, favouritesError} = useCheckFavourites(user.id, film?.id)
+    const { deleteFilm, deleteWatchlistLoading, deleteWatchlistError } = useDeleteFilmFromWatchlist();
+    const { deleteFilm:deleteFilmFromFavourites, deleteFavouritesLoading, deleteFavouritesError } = useDeleteFilmFromFavourites();
 
-    return (
-        <>
-            <Navbar />
-            <div className={styles.filmDetailsCard}>
-                <div className={styles.filmDetailsContainer}>
-                    <div className={styles.filmDetailsHeaderMain}>
-                        <div>
-                            <img className={styles.detailsPoster} src={`/${film.poster}`} />
-                        </div>
-                        <div className={styles.filmDescriptionContainer}>
+
+    if (film.length!==0){
+        return (
+            <>
+                
+                <Navbar />
+                <div className={styles.filmDetailsCard}>
+                    <div className={styles.filmDetailsContainer}>
+                        <div className={styles.filmDetailsHeaderMain}>
                             <div>
-                                <div className={styles.filmDetailsHeader}>
-                                    <p className={styles.filmDetailsTitle}>{film.title}</p>
-                                    <div className={styles.filmDetailsRating}>
-                                        <p className={styles.filmDetailsRatingP}>{loading ? "..." : rating.toFixed(1)}</p>
-                                        <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
-                                        <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
-                                        <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
-                                        <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
-                                        <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
+                                <img className={styles.detailsPoster} src={`/${film.poster}`} />
+                            </div>
+                            <div className={styles.filmDescriptionContainer}>
+                                <div>
+                                    <div className={styles.filmDetailsHeader}>
+                                        <p className={styles.filmDetailsTitle}>{film.title}</p>
+                                        <div className={styles.filmDetailsRating}>
+                                            <p className={styles.filmDetailsRatingP}>{ratingLoading ? "..." : rating.toFixed(1)}</p>
+                                            <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
+                                            <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
+                                            <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
+                                            <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
+                                            <img className={styles.filmDetailsRatingImg} src="/icons/star_orange.png" />
+                                        </div>
+                                    </div>
+                                    <p className={`${styles.filmDetailsDescription} ${styles.filmDetailsMainDescription}`}>
+                                        <span className={styles.filmDetailsSection}>Description: </span>
+                                        {film.description}
+                                    </p>
+                                </div>
+                                
+                                <div className={styles.filmDetailsBottom}>
+                                    <div>
+                                        <p className={styles.filmDetailsDescription}>
+                                            <span className={styles.filmDetailsSection}>Director: </span>Quentin Tarantino
+                                        </p>
+                                        <p className={styles.filmDetailsDescription}>
+                                            <span className={styles.filmDetailsSection}>Country: </span>Ukraine
+                                        </p>
+                                        <p className={styles.filmDetailsDescription}>
+                                            <span className={styles.filmDetailsSection}>Date: </span>01.01.2025
+                                        </p>
+                                        <p className={styles.filmDetailsDescription}>
+                                            <span className={styles.filmDetailsSection}>Duration: </span>1:30:00
+                                        </p>
+                                    </div>
+                                    <div className={styles.addButtons}>
+                                        {!isInFavourites ? (<Button label="Add to favourites" onClick={() => addFilmToFavourites(user.id, film.id)}/>) : (<Button label="Delete from favourites" onClick={() => deleteFilmFromFavourites(user.id, film.id)}/>)}
+                                        {!isInWatchlist ? (<Button label="Add to watchlist" onClick={() => addFilm(user.id, film.id)}/>) : (<Button label="Delete from watchlist" onClick={() => deleteFilm(user.id, film.id)}/>)}
                                     </div>
                                 </div>
-                                <p className={`${styles.filmDetailsDescription} ${styles.filmDetailsMainDescription}`}>
-                                    <span className={styles.filmDetailsSection}>Description: </span>
-                                    {film.description}
-                                </p>
-                            </div>
-                            
-                            <div className={styles.filmDetailsBottom}>
-                                <div>
-                                    <p className={styles.filmDetailsDescription}>
-                                        <span className={styles.filmDetailsSection}>Director: </span>Quentin Tarantino
-                                    </p>
-                                    <p className={styles.filmDetailsDescription}>
-                                        <span className={styles.filmDetailsSection}>Country: </span>Ukraine
-                                    </p>
-                                    <p className={styles.filmDetailsDescription}>
-                                        <span className={styles.filmDetailsSection}>Date: </span>01.01.2025
-                                    </p>
-                                    <p className={styles.filmDetailsDescription}>
-                                        <span className={styles.filmDetailsSection}>Duration: </span>1:30:00
-                                    </p>
-                                </div>
-                                <div className={styles.addToWatchlist}>
-                                    <Button label="Add to watchlist" />
-                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className={styles.filmDetailsGenres}>
-                        <MovieGenres genres={film.genres}/>
-                    </div>
-
-                    <p className={styles.detailsLabel}>Photos</p>
-                    <div className={styles.photosContainer}>
-                        <MoviePhotos/>
-                    </div>
-
-                    <p className={styles.detailsLabel}>Discussions</p>
-                    <div></div>
-
-                    <div className={styles.detailsButton}>
-                        <MovieDiscussions discussions={discussions}/>
-                        <div className={styles.discussionButton}>
-                            <Button label="Start discussion" onClick = {() => setShowDiscussionForm(true)}/>
+                        <div className={styles.filmDetailsGenres}>
+                            <MovieGenres genres={film.genres}/>
                         </div>
-                    </div>
 
-                    <p className={styles.detailsLabel}>Reviews</p>
-                    <div className={styles.reviewsContainer}>
-                        <MovieReviews reviews={reviews}/>
-                    </div>
-                    <div className={styles.detailsButton}>
-                        <Button label="Write review" onClick = {() => setShowReviewForm(true)}/>
+                        <p className={styles.detailsLabel}>Photos</p>
+                        <div className={styles.photosContainer}>
+                            <MoviePhotos/>
+                        </div>
+
+                        <p className={styles.detailsLabel}>Discussions</p>
+                        <div></div>
+
+                        <div className={styles.detailsButton}>
+                            <MovieDiscussions discussions={discussions}/>
+                            <div className={styles.discussionButton}>
+                                <Button label="Start discussion" onClick = {() => setShowDiscussionForm(true)}/>
+                            </div>
+                        </div>
+
+                        <p className={styles.detailsLabel}>Reviews</p>
+                        <div className={styles.reviewsContainer}>
+                            <MovieReviews reviews={reviews}/>
+                        </div>
+                        <div className={styles.detailsButton}>
+                            <Button label="Write review" onClick = {() => setShowReviewForm(true)}/>
+                        </div>
                     </div>
                 </div>
-            </div>
+                
+
+                {showReviewForm && (
+                    <ReviewForm onClose = {() => setShowReviewForm(false)} filmId={film.id}/>
+                )}
+
+                {showDiscussionForm && (
+                    <DiscussionForm onClose = {() => setShowDiscussionForm(false)} filmId={film.id}/>
+                )}
+            </>
+        );
+    }
+    else{
+        return (
+            <>
+                <Navbar />
+                <br />
+                <br />
+                <Message messageTitle='Movie does not exist...' messageText='Check other movies on main page'/>
+            </>
             
-
-            {showReviewForm && (
-                <ReviewForm onClose = {() => setShowReviewForm(false)} filmId={film.id}/>
-            )}
-
-            {showDiscussionForm && (
-                <DiscussionForm onClose = {() => setShowDiscussionForm(false)} filmId={film.id}/>
-            )}
-        </>
-    );
+        );
+    }
+    
 }

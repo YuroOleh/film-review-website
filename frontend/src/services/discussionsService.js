@@ -1,10 +1,13 @@
 const API_URL = "http://localhost:3000/discussions";
 
 export const discussionsService = {
-  async getAll(sortBy='date', orderBy='asc', search='') {
+  async getAll(sortBy='date', orderBy='asc', search='', userId='') {
     let query = `?_sort=${sortBy}&_order=${orderBy}`;
     if (search) {
       query += `&title_like=${encodeURIComponent(search)}`;
+    }
+    if (userId){
+      query += `&userId=${userId}`;
     }
 
     const res = await fetch(`${API_URL}${query}`);

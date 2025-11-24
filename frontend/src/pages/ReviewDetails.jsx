@@ -6,12 +6,27 @@ import { useParams } from "react-router-dom";
 import { useFetchReview } from "../hooks/useFetchReview";
 import { useUser } from "../hooks/useUser";
 import { useFetchFilm } from "../hooks/useFetchFilm";
+import Message from "../components/shared/Message";
 
 export default function ReviewDetails() {
     const { id } = useParams();
     const { review, loadingReview, errorReview} = useFetchReview(id)
     const { user, loadingUser, errorUser} = useUser(review.userId)
     const { film, loadingFilm, errorFilm} = useFetchFilm(review.filmId)
+
+    if (review.length===0) {
+        return (
+            <>
+                <Navbar />
+                <br />
+                <br />
+                <Message
+                    messageTitle="Review does not exist..."
+                    messageText="Check other reviews on the reviews page"
+                />
+            </>
+        );
+    }
 
     return (
         <>

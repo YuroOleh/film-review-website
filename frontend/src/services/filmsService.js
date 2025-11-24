@@ -17,5 +17,14 @@ export const filmsService = {
     const res = await fetch(`${API_URL}/${id}`);
     if (!res.ok) throw new Error("Film was not found...");
     return res.json();
+  },
+
+  async getByIds(ids = []) {
+      if (!ids.length) return [];
+      const query = ids.map(id => `id=${id}`).join('&');
+
+      const res = await fetch(`${API_URL}?${query}`);
+      if (!res.ok) throw new Error("Films were not found...");
+      return res.json();
   }
 };

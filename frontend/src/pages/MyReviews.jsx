@@ -8,11 +8,12 @@ import Sort from "../components/shared/Sort";
 import { useFetchReviews } from "../hooks/useFetchReviews";
 import Message from "../components/shared/Message";
 
-export default function Reviews() {
+export default function MyReviews() {
     const [sortBy, setSortBy] = useState('date');
     const [orderBy, setOrderBy] = useState('asc');
     const [search, setSearch] = useState('')
-    const { reviews, loading, error } = useFetchReviews(sortBy, orderBy, search);
+    const user = JSON.parse(localStorage.getItem('user'))
+    const { reviews, loading, error } = useFetchReviews(sortBy, orderBy, search, user.id);
     const reviewsPerPage = 4;
 
     const totalPages = Math.ceil(reviews.length / reviewsPerPage);
@@ -22,7 +23,20 @@ export default function Reviews() {
     const endIndex = startIndex + reviewsPerPage;
 
     const currentReviews = reviews.slice(startIndex, endIndex);
-    
+
+    if (reviews.length===0) {
+        return (
+            <>
+                <Navbar />
+                <br />
+                <br />
+                <Message
+                    messageTitle="Looks like you dont have reviews..."
+                    messageText="You can create reviews in movie details page"
+                />
+            </>
+        );
+    }
 
     return (
         <>
@@ -53,7 +67,6 @@ export default function Reviews() {
             </div>
 
             {error && <Message messageTitle='Something went wrong...' messageText='It appears that the server is currently unavailable'/>}
-            {!error && reviews.length===0 && <Message messageTitle='No reviews found...' messageText='There are no reviews matching your search criteria '/>}
 
             
             <div className={styles.paginationContainer}>

@@ -11,6 +11,7 @@ import { useFetchComments } from "../hooks/useFetchComments";
 import { useWriteComment } from "../hooks/useWriteComment";
 import { useMarkAsViewed } from "../hooks/useMarkAsViewed";
 import { useEffect } from "react";
+import Message from "../components/shared/Message";
 
 export default function News() {
   const { id: articleId } = useParams();
@@ -37,46 +38,60 @@ export default function News() {
     setNewComment(""); 
   }
 
-  return (
-    <>
-      <Navbar/>
-      <div className={styles.detailsContainer}>
-        <div className={styles.imgContainer}>
-          <img className={styles.detailsImg} src={image_placeholder} alt="" />
-        </div>
-
-        <div className={styles.headerContainer}>
-          <p className={styles.headerTitle}>{article.title}</p>
-          <div className={styles.viewsContainer}>
-            <p className={styles.viewsCount}>{article.views}</p>
-            <img className={styles.viewsIcon} src="/icons/view.png" alt="" />
+  if(article.length!==0){
+    return (
+      <>
+        <Navbar/>
+        <div className={styles.detailsContainer}>
+          <div className={styles.imgContainer}>
+            <img className={styles.detailsImg} src={image_placeholder} alt="" />
           </div>
-        </div>
 
-        <div className={styles.detailsTextContainer}>
-          <p className={styles.detailsText}>{article.fullArticle}</p>
-        </div>
-
-        <div className={styles.commentsContainer}>
-          <p className={styles.commentsTitle}>Comments:</p>
-          {comments?.map((c) => (
-            <div key={c.id} className={styles.comment}>
-              <Comment text={c.text}/>
+          <div className={styles.headerContainer}>
+            <p className={styles.headerTitle}>{article.title}</p>
+            <div className={styles.viewsContainer}>
+              <p className={styles.viewsCount}>{article.views}</p>
+              <img className={styles.viewsIcon} src="/icons/view.png" alt="" />
             </div>
-          ))}
-        </div>
+          </div>
 
-        <div className={styles.inputContainer}>
-          <Input 
-            placeholder="Write your comment..." 
-            value={newComment} 
-            onChange={setNewComment} 
-          /> 
-          <div className={styles.sendButton}>
-            <SendButton onClick={handleSend}/>
+          <div className={styles.detailsTextContainer}>
+            <p className={styles.detailsText}>{article.fullArticle}</p>
+          </div>
+
+          <div className={styles.commentsContainer}>
+            <p className={styles.commentsTitle}>Comments:</p>
+            {comments?.map((c) => (
+              <div key={c.id} className={styles.comment}>
+                <Comment text={c.text}/>
+              </div>
+            ))}
+          </div>
+
+          <div className={styles.inputContainer}>
+            <Input 
+              placeholder="Write your comment..." 
+              value={newComment} 
+              onChange={setNewComment} 
+            /> 
+            <div className={styles.sendButton}>
+              <SendButton onClick={handleSend}/>
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
+  else{
+    return( 
+            <>
+              <Navbar />
+              <br />
+              <br />
+              <Message messageTitle='Article does not exist...' messageText='Check other articles on news page'/>
+            </>
+          );
+  }
+
+  
 }

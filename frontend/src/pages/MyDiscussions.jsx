@@ -8,11 +8,12 @@ import { useState } from "react";
 import { useFetchDiscussions } from "../hooks/useFetchDiscussions";
 import Message from "../components/shared/Message";
 
-export default function Discussions() {
+export default function MyDiscussions() {
     const [sortBy, setSortBy] = useState('date');
     const [orderBy, setOrderBy] = useState('asc');
     const [search, setSearch] = useState('')
-    const { discussions, loading, error } = useFetchDiscussions(sortBy, orderBy, search)
+    const user = JSON.parse(localStorage.getItem('user'))
+    const { discussions, loading, error } = useFetchDiscussions(sortBy, orderBy, search, user.id)
     const discussionsPerPage = 6;
 
     const totalPages = Math.ceil(discussions.length / discussionsPerPage);
@@ -23,7 +24,19 @@ export default function Discussions() {
 
     const currentDiscussions = discussions.slice(startIndex, endIndex);
 
-    
+    if (discussions.length===0) {
+        return (
+            <>
+                <Navbar />
+                <br />
+                <br />
+                <Message
+                    messageTitle="Looks like you dont have discussions..."
+                    messageText="You can create discussion in movie details page"
+                />
+            </>
+        );
+    }
 
     return (
         <>
@@ -54,7 +67,6 @@ export default function Discussions() {
             </div>
 
             {error && <Message messageTitle='Something went wrong...' messageText='It appears that the server is currently unavailable'/>}
-            {!error && discussions.length===0 && <Message messageTitle='No discussions found...' messageText='There are no discussions matching your search criteria '/>}
 
             
 

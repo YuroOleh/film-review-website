@@ -72,7 +72,11 @@
     margin-top: auto;
 }
 
-.addToWatchlist {
+.addButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 320px;
     margin-top: auto;
     margin-bottom: 10px;
 }

@@ -7,6 +7,7 @@ import { useState } from "react";
 import MoviesFilter from "../components/Films/MoviesFilter";
 import Sort from "../components/shared/Sort";
 import { useFetchFilms } from "../hooks/useFetchFilms";
+import Message from "../components/shared/Message";
 
 export default function Films() {
     const [sortBy, setSortBy] = useState('title');
@@ -47,6 +48,9 @@ export default function Films() {
                     <MovieCard film={film} />
                 ))}
             </div>
+
+            {error && <Message messageTitle='Something went wrong...' messageText='It appears that the server is currently unavailable'/>}
+            {!error && films.length===0 && <Message messageTitle='No movies found...' messageText='There are no movies matching your search criteria '/>}
 
             <div className={styles.pagination}>
                 <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage}/>

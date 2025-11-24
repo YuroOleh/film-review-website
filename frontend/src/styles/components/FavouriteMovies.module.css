@@ -19,8 +19,12 @@
 
 .filmsImg {
   width: 150px;
-  height: auto;
+  height: 220px;
   border-radius: 12px;
   user-select: none;
   pointer-events: none;
+}
+
+.films::-webkit-scrollbar {
+  display: none; 
 }
