@@ -6,9 +6,14 @@ import styles from "../styles/pages/Films.module.css";
 import { useState } from "react";
 import MoviesFilter from "../components/Films/MoviesFilter";
 import Sort from "../components/shared/Sort";
+import { useFetchFilms } from "../hooks/useFetchFilms";
+import Message from "../components/shared/Message";
 
 export default function Films() {
-    const films = Array.from({ length: 100 }, () => <MovieCard />);
+    const [sortBy, setSortBy] = useState('title');
+    const [orderBy, setOrderBy] = useState('asc');
+    const [search, setSearch] = useState('');
+    const { films, loading, error } = useFetchFilms(sortBy, orderBy, search);
     const filmsPerPage = 9;
 
     const totalPages = Math.ceil(films.length / filmsPerPage);
@@ -30,12 +35,22 @@ export default function Films() {
                     "Release date",
                     "Length"
                     ]}
+
+                    onSortChange={setSortBy}
+                    onOrderChange={setOrderBy}
                 />}
+
+                onSearch={setSearch}
             />
 
             <div className={styles.filmList}>
-                {currentFilms }
+                {currentFilms.map(film => (
+                    <MovieCard film={film} />
+                ))}
             </div>
+
+            {error && <Message messageTitle='Something went wrong...' messageText='It appears that the server is currently unavailable'/>}
+            {!error && films.length===0 && <Message messageTitle='No movies found...' messageText='There are no movies matching your search criteria '/>}
 
             <div className={styles.pagination}>
                 <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage}/>

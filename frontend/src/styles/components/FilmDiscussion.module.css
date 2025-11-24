@@ -10,35 +10,40 @@
     flex-direction: column;
     margin-right: 20px;
 }
+.filmContainerP{
+    width: 150px;
+    font-size: large;
+    text-align: center;
+}
 .commentsContainer{
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
 }
 .infoContainer{
     display: flex;
     flex-direction: column;
 }
 .filmContainerImg{
-    width:100px;
+    width: 150px;
     height: auto;
     border-radius: 10px;
 }
 .userInfoImg{
-    width: 32px;
+    width: 40px;
     height: auto;
     border-radius: 50%;
     margin-right: 10px;
 }
 .commentsInfoImg{
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
 }
 .userInfo{
     display:flex;
     align-items: center;
 }
 .commentsInfo{
-    margin-top: auto;
     display: flex;
     align-items: center;
 }
@@ -46,7 +51,7 @@
     margin-bottom: 5px;
 }
 .commentsContainerP{
-    font-size: large;
+    font-size: x-large;
     font-weight: bold;
     margin: 0px;
     margin-bottom: 5px;
@@ -57,9 +62,23 @@
 }
 .userInfoP{
     margin:0px;
+    font-size: large;
 }
 
 .link{
     text-decoration: none;
     color: inherit;
+}
+
+.commentsInfoUsers{
+    display: flex;
+    margin-right: 20px;
+    align-items: center;
+}
+
+.commentsInfoMessages{
+    display: flex;
+    margin-right: 10px;
+    align-items: center;
+
 }

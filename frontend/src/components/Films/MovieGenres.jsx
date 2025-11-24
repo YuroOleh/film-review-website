@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import styles from "../../styles/components/MovieGenres.module.css";
 import Genre from "../shared/Genre";
 
-function MovieGenres() {
+function MovieGenres({genres=[]}) {
   const scrollRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -34,8 +34,8 @@ function MovieGenres() {
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
     >
-      {[...Array(4)].map(() => (
-          <Genre label='Genre'/>
+      {genres.map((genre) => (
+        <Genre  label={genre} />
       ))}
     </div>
   );

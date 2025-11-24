@@ -5,9 +5,14 @@ import Pagination from "../components/shared/Pagination";
 import FilmReview from "../components/Reviews/FilmReview";
 import { useState } from "react";
 import Sort from "../components/shared/Sort";
+import { useFetchReviews } from "../hooks/useFetchReviews";
+import Message from "../components/shared/Message";
 
 export default function Reviews() {
-    const reviews = Array.from({ length: 100 }, () => <FilmReview />);
+    const [sortBy, setSortBy] = useState('date');
+    const [orderBy, setOrderBy] = useState('asc');
+    const [search, setSearch] = useState('')
+    const { reviews, loading, error } = useFetchReviews(sortBy, orderBy, search);
     const reviewsPerPage = 4;
 
     const totalPages = Math.ceil(reviews.length / reviewsPerPage);
@@ -17,6 +22,7 @@ export default function Reviews() {
     const endIndex = startIndex + reviewsPerPage;
 
     const currentReviews = reviews.slice(startIndex, endIndex);
+    
 
     return (
         <>
@@ -24,20 +30,31 @@ export default function Reviews() {
 
             <div className={styles.searchbarContainer}>
                 <div className={styles.searchbar}><Searchbar placeholder="Search review..." SortComponent={
-                <Sort
+                    <Sort
                     options={[
-                    "Reactions",
-                    "User rating",
-                    "Date",
+                        "Date",
+                        "Likes",
+                        "Dislikes"
                     ]}
-                    />}
+                    onSortChange={setSortBy}
+                    onOrderChange={setOrderBy}
+                    />
+                }
+
+                onSearch={setSearch}
                 /> 
             </div>
             </div>
             
             <div className={styles.reviewsContainer}>
-                {currentReviews}
+                {currentReviews.map(review => (
+                    <FilmReview review={review} />
+                ))}
             </div>
+
+            {error && <Message messageTitle='Something went wrong...' messageText='It appears that the server is currently unavailable'/>}
+            {!error && reviews.length===0 && <Message messageTitle='No reviews found...' messageText='There are no reviews matching your search criteria '/>}
+
             
             <div className={styles.paginationContainer}>
                 <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage}/>

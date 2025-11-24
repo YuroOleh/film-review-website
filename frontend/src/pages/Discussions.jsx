@@ -5,9 +5,14 @@ import FilmDiscussion from "../components/Discussions/FilmDiscussion";
 import styles from "../styles/pages/Discussions.module.css";
 import Sort from "../components/shared/Sort";
 import { useState } from "react";
+import { useFetchDiscussions } from "../hooks/useFetchDiscussions";
+import Message from "../components/shared/Message";
 
 export default function Discussions() {
-    const discussions = Array.from({ length: 100 }, () => <FilmDiscussion />);
+    const [sortBy, setSortBy] = useState('date');
+    const [orderBy, setOrderBy] = useState('asc');
+    const [search, setSearch] = useState('')
+    const { discussions, loading, error } = useFetchDiscussions(sortBy, orderBy, search)
     const discussionsPerPage = 6;
 
     const totalPages = Math.ceil(discussions.length / discussionsPerPage);
@@ -18,6 +23,8 @@ export default function Discussions() {
 
     const currentDiscussions = discussions.slice(startIndex, endIndex);
 
+    
+
     return (
         <>
             <Navbar/>
@@ -26,18 +33,29 @@ export default function Discussions() {
                     <Searchbar placeholder="Search discussions by title..." SortComponent={
                 <Sort
                     options={[
-                    "Title",
                     "Date",
+                    "Title",
                     "Popularity"
                     ]}
+
+                    onSortChange={setSortBy}
+                    onOrderChange={setOrderBy}
                 />}
+
+                onSearch={setSearch}
             />
                 </div>
             </div>
             
             <div className={styles.discussions}>
-                {currentDiscussions}
+                {currentDiscussions.map(discussion => (
+                    <FilmDiscussion discussion={discussion} />
+                ))}
             </div>
+
+            {error && <Message messageTitle='Something went wrong...' messageText='It appears that the server is currently unavailable'/>}
+            {!error && discussions.length===0 && <Message messageTitle='No discussions found...' messageText='There are no discussions matching your search criteria '/>}
+
             
 
             <div className={styles.pagination}>
