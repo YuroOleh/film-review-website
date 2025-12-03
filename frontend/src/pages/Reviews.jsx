@@ -3,46 +3,83 @@ import Navbar from "../components/shared/Navbar";
 import Searchbar from "../components/shared/Searchbar";
 import Pagination from "../components/shared/Pagination";
 import FilmReview from "../components/Reviews/FilmReview";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sort from "../components/shared/Sort";
+import { useFetchReviews } from "../hooks/useFetchReviews";
+import Message from "../components/shared/Message";
 
 export default function Reviews() {
-    const reviews = Array.from({ length: 100 }, () => <FilmReview />);
+    const [sortBy, setSortBy] = useState('created_at');
+    const [orderBy, setOrderBy] = useState('desc');
+    const [search, setSearch] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
     const reviewsPerPage = 4;
 
-    const totalPages = Math.ceil(reviews.length / reviewsPerPage);
-    const [currentPage, setCurrentPage] = useState(1);
+    const { reviews = [], loading, error, totalPages } = useFetchReviews(
+        sortBy,
+        orderBy,
+        search,
+        currentPage,
+        reviewsPerPage
+    );
 
-    const startIndex = (currentPage - 1) * reviewsPerPage;
-    const endIndex = startIndex + reviewsPerPage;
-
-    const currentReviews = reviews.slice(startIndex, endIndex);
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [sortBy, orderBy, search]);
 
     return (
         <>
-            <Navbar/>
+            <Navbar />
 
             <div className={styles.searchbarContainer}>
-                <div className={styles.searchbar}><Searchbar placeholder="Search review..." SortComponent={
-                <Sort
-                    options={[
-                    "Reactions",
-                    "User rating",
-                    "Date",
-                    ]}
-                    />}
-                /> 
-            </div>
+                <div className={styles.searchbar}>
+                    <Searchbar
+                        placeholder="Search review..."
+                        SortComponent={
+                            <Sort
+                                options={[
+                                    "Date",
+                                    "Likes",
+                                    "Dislikes"
+                                ]}
+                                onSortChange={setSortBy}
+                                onOrderChange={setOrderBy}
+                            />
+                        }
+                        onSearch={setSearch}
+                    />
+                </div>
             </div>
             
             <div className={styles.reviewsContainer}>
-                {currentReviews}
+                {loading ? (
+                    <p>Loading...</p>
+                ) : reviews.length > 0 ? (
+                    reviews.map(review => <FilmReview key={review.id} review={review} />)
+                ) : (
+                    !error && (
+                        <Message
+                            messageTitle='No reviews found...'
+                            messageText='There are no reviews matching your search criteria '
+                        />
+                    )
+                )}
             </div>
-            
+
+            {error && (
+                <Message
+                    messageTitle='Something went wrong...'
+                    messageText='It appears that the server is currently unavailable'
+                />
+            )}
+
             <div className={styles.paginationContainer}>
-                <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage}/>
+                <Pagination
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    onPageChange={(p) => setCurrentPage(p)}
+                />
             </div>
-            
         </>
     );
 }

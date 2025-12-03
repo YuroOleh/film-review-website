@@ -1,7 +1,7 @@
 .cardContainer {
     background-color: white;
     width: 400px;
-    height: 650px;
+    height: 700px;
     margin: 20px;
     border-radius: 30px;
     display: flex;
@@ -11,7 +11,7 @@
 
 .moviePoster {
     width: 320px;
-    height: auto;
+    height: 450px;
     display: block;
     margin: 0 auto;
 }
@@ -67,4 +67,8 @@
 .link{
     text-decoration: none;
     color: inherit;
+}
+
+.headerContainerH2{
+    font-size: x-large;
 }
