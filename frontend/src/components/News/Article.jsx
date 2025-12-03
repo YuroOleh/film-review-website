@@ -4,7 +4,7 @@ import image_placeholder from "../../assets/image_placeholder.jpg";
 import { Link } from "react-router-dom";
 
 function Article({ article }) {
-    const date = new Date(article.date);
+    const date = new Date(article.created_at);
     const formatted = date.toLocaleDateString("uk-UA");
 
     const { views, loading } = useViewsCount(article.id);
@@ -26,7 +26,7 @@ function Article({ article }) {
                             </div> 
                         </div>
                         <p>
-                            {article.shortDescription}
+                            {article.description}
                         </p>
                         <div className={styles.dateContainer}>
                             <p className={styles.date}>{formatted}</p>

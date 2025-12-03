@@ -1,8 +1,8 @@
-const API_URL = "http://localhost:3000/comments";
+const API_URL = import.meta.env.VITE_API_URL + "news/comments/";
 
 export const commentsService = {
   async getAll(articleId) {
-    const res = await fetch(`${API_URL}?articleId=${articleId}&_sort=date&_order=asc`);
+    const res = await fetch(`${API_URL}?articleId=${articleId}&ordering=created_at`);
     if (!res.ok) throw new Error("Comments were not found...");
     return res.json();
   },
@@ -14,13 +14,10 @@ export const commentsService = {
   },
 
   async writeComment(articleId, userId, text) {
-    const date = new Date().toISOString().split("T")[0]; 
-
     const body = {
-      articleId,
-      userId,
-      text,
-      date
+      article: articleId,
+      user: userId,
+      text
     };
 
     const res = await fetch(API_URL, {

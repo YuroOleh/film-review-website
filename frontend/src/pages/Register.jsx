@@ -2,12 +2,12 @@ import styles from "../styles/pages/Register.module.css";
 import Button from "../components/shared/Button";
 import Input from "../components/shared/Input";
 import logo from "../assets/logo.png";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth2 } from "../hooks/useAuth2";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 export default function Register() {
-    const { register } = useAuth();
+    const { register } = useAuth2();
     const navigate = useNavigate();
 
     const[email, setEmail] = useState("")

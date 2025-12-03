@@ -15,18 +15,17 @@ import { useFetchReviews } from "../hooks/useFetchReviews";
 import { useFetchDiscussions } from "../hooks/useFetchDiscussions";
 import Message from "../components/shared/Message";
 
+
 export default function Profile() {
     const [showLogout, setShowLogout] = useState(false);
     const user = JSON.parse(localStorage.getItem('user'));
-    const {favourites, favouritesLoading, favouritesError} = useFetchFavourites(user.id)
-
-    const filmIds = useMemo(() => favourites.map(item => item.filmId), [favourites]);
+    const {favourites, favouritesLoading, favouritesError} = useFetchFavourites(user?.id);
+    const filmIds = useMemo(() => favourites.map(item => item.film), [favourites]);
     const { films, loading, error } = useFetchFilmsByIds(filmIds);
-
-    const { watchlist, watchlistLoading, watchlistError } = useFetchWatchlist(user.id);
-    const { reviews, reviewsLoading, reviewsError } = useFetchReviews(undefined, undefined, undefined, user.id);
-    const { discussions, discussionsLoading, discussionsError } = useFetchDiscussions(undefined, undefined, undefined, user.id)
-
+    const { watchlist, watchlistLoading, watchlistError } = useFetchWatchlist(user?.id);
+    const { reviews, reviewsLoading, reviewsError } = useFetchReviews(undefined, undefined, undefined, user?.id, undefined);
+    const { discussions, discussionsLoading, discussionsError } = useFetchDiscussions(undefined, undefined, undefined, user?.id, undefined)
+    
 
     return (
         <>
@@ -38,13 +37,13 @@ export default function Profile() {
                             <img className={styles.avatar} src={avatar_placeholder} />
                             <div className={styles.headerInfo}>
                                 <div className={styles.info}>
-                                    <p className={styles.username}>{user.fullName}</p>
-                                    <p className={styles.email}>{user.email}</p>
+                                    <p className={styles.username}>{user?.username}</p>
+                                    <p className={styles.email}>{user?.email}</p>
                                 </div>
 
                                 <div className={`${styles.date} ${styles.dateContainer}`}>
                                     <img className={styles.dateImg} src="icons/calendar.png" />
-                                    <p className={styles.dateP}>01.01.25</p>
+                                    <p className={styles.dateP}>{user?.date}</p>
                                 </div>
                             </div>
                         </div>

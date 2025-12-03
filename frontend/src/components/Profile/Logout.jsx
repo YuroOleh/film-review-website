@@ -1,10 +1,10 @@
 import styles from "../../styles/components/Logout.module.css";
 import Button from "../shared/Button";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth2 } from "../../hooks/useAuth2";
 
 function Logout({onClose}){
-    const {logout} = useAuth();
+    const {logout} = useAuth2();
 
     return(
         <>

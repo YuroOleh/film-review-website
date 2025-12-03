@@ -3,45 +3,48 @@ import Searchbar from "../components/shared/Searchbar";
 import MovieCard from "../components/Films/MovieCard";
 import Pagination from "../components/shared/Pagination";
 import styles from "../styles/pages/Films.module.css";
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import MoviesFilter from "../components/Films/MoviesFilter";
 import Sort from "../components/shared/Sort";
 import { useFetchWatchlist } from "../hooks/useFetchWatchlist";
 import { useFetchFilmsByIds } from "../hooks/useFetchFilmsByIds";
-import { useMemo } from "react";
 import Message from "../components/shared/Message";
 
 export default function MyWatchlist() {
-    const [sortBy, setSortBy] = useState("title");
-    const [orderBy, setOrderBy] = useState("asc");
+    const [sortBy, setSortBy] = useState("created_at");
+    const [orderBy, setOrderBy] = useState("desc");
     const [search, setSearch] = useState("");
-    const user = JSON.parse(localStorage.getItem("user"));
-    const { watchlist, watchlistLoading, watchlistError } = useFetchWatchlist(user.id);
-
-    const filmIds = useMemo(() => watchlist.map(item => item.filmId), [watchlist]);
-    const { films, loading, error } = useFetchFilmsByIds(filmIds);
-
-    const filmsPerPage = 9;
     const [currentPage, setCurrentPage] = useState(1);
+    const filmsPerPage = 9;
 
-    const totalPages = Math.ceil(films.length / filmsPerPage);
-    const startIndex = (currentPage - 1) * filmsPerPage;
-    const endIndex = startIndex + filmsPerPage;
-    const currentFilms = films.slice(startIndex, endIndex);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const {
+        watchlist,
+        watchlistLoading,
+        watchlistError,
+        totalPages,
+        count
+    } = useFetchWatchlist(user?.id, currentPage, filmsPerPage);
 
-    if (watchlist.length===0) {
+    const filmIds = useMemo(() => watchlist.map(item => item.film), [watchlist]);
+    const { films = [], loading, error } = useFetchFilmsByIds(filmIds);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [sortBy, orderBy, search, user?.id]);
+
+    if (watchlistLoading) return <p>Loading...</p>;
+    if (watchlist.length === 0)
         return (
             <>
                 <Navbar />
-                <br />
-                <br />
+                <br /><br />
                 <Message
                     messageTitle="Looks like your watchlist is empty..."
                     messageText="Browse through movies at main page"
                 />
             </>
         );
-    }
 
     return (
         <div>
@@ -61,13 +64,24 @@ export default function MyWatchlist() {
             />
 
             <div className={styles.filmList}>
-                {currentFilms.map(film => (
-                    <MovieCard key={film.id} film={film} />
-                ))}
+                {loading ? (
+                    <p>Loading films...</p>
+                ) : films.length > 0 ? (
+                    films.map(film => <MovieCard key={film.id} film={film} />)
+                ) : (
+                    <Message
+                        messageTitle="No films found..."
+                        messageText="Check back later or add some films to your watchlist."
+                    />
+                )}
             </div>
 
-            {watchlistError && <Message messageTitle='Something went wrong...' messageText='It appears that the server is currently unavailable'/>}
-
+            {watchlistError && (
+                <Message
+                    messageTitle="Something went wrong..."
+                    messageText="It appears that the server is currently unavailable"
+                />
+            )}
 
             <div className={styles.pagination}>
                 <Pagination

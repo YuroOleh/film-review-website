@@ -7,6 +7,8 @@ function MovieCard({ film }) {
     const formatted = date.toLocaleDateString("uk-UA");
 
     const { rating, loading } = useFilmRating(film.id);
+    const length_hours = Math.floor(film.length / 60) 
+    const length_minutes = film.length % 60
 
     return (
         <Link to={`/films/details/${film.id}`} className={styles.link}>
@@ -27,7 +29,7 @@ function MovieCard({ film }) {
                 <div className={styles.bottomContainer}>
                     <div className={styles.duration}>
                         <img className={styles.bottomIcon} src="icons/clock.png" alt="Clock" />
-                        <p>{film.length}</p>
+                        <p>{length_hours}h {length_minutes}min</p>
                     </div>
                     <div className={styles.date}>
                         <img className={styles.bottomIcon} src="icons/calendar.png" alt="Calendar" />

@@ -11,13 +11,15 @@ import { useFetchComments } from "../hooks/useFetchComments";
 import { useWriteComment } from "../hooks/useWriteComment";
 import { useMarkAsViewed } from "../hooks/useMarkAsViewed";
 import { useEffect } from "react";
+import { useViewsCount } from "../hooks/useViewsCount";
 import Message from "../components/shared/Message";
 
 export default function News() {
   const { id: articleId } = useParams();
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?.id;
-
+  
+  const { views, loading } = useViewsCount(articleId);
   const { article } = useFetchArticle(articleId);
   const { comments } = useFetchComments(articleId);
   const { writeComment } = useWriteComment();
@@ -50,20 +52,20 @@ export default function News() {
           <div className={styles.headerContainer}>
             <p className={styles.headerTitle}>{article.title}</p>
             <div className={styles.viewsContainer}>
-              <p className={styles.viewsCount}>{article.views}</p>
+              <p className={styles.viewsCount}>{views}</p>
               <img className={styles.viewsIcon} src="/icons/view.png" alt="" />
             </div>
           </div>
 
           <div className={styles.detailsTextContainer}>
-            <p className={styles.detailsText}>{article.fullArticle}</p>
+            <p className={styles.detailsText}>{article.text}</p>
           </div>
 
           <div className={styles.commentsContainer}>
             <p className={styles.commentsTitle}>Comments:</p>
             {comments?.map((c) => (
               <div key={c.id} className={styles.comment}>
-                <Comment text={c.text}/>
+                <Comment message={c}/>
               </div>
             ))}
           </div>

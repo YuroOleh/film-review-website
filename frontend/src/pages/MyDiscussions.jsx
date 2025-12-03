@@ -9,8 +9,8 @@ import { useFetchDiscussions } from "../hooks/useFetchDiscussions";
 import Message from "../components/shared/Message";
 
 export default function MyDiscussions() {
-    const [sortBy, setSortBy] = useState('date');
-    const [orderBy, setOrderBy] = useState('asc');
+    const [sortBy, setSortBy] = useState('created_at');
+    const [orderBy, setOrderBy] = useState('desc');
     const [search, setSearch] = useState('')
     const user = JSON.parse(localStorage.getItem('user'))
     const { discussions, loading, error } = useFetchDiscussions(sortBy, orderBy, search, user.id)

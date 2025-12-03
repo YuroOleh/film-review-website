@@ -59,7 +59,7 @@ export default function DiscussionDetails() {
                 <div className={styles.comments}>
                     {messages?.map((msg) => (
                     <div key={msg.id} className={styles.comment}>
-                        <Comment text={msg.text}/>
+                        <Comment message={msg}/>
                     </div>
                     ))}
                 </div>

@@ -7,6 +7,8 @@ export const useFetchFilmReviews = (filmId) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!filmId) return;
+
     reviewsService.getReviewsByFilmId(filmId)
       .then(setReviews)
       .catch(setError)

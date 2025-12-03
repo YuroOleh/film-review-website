@@ -11,8 +11,8 @@ import Message from "../components/shared/Message";
 export default function ReviewDetails() {
     const { id } = useParams();
     const { review, loadingReview, errorReview} = useFetchReview(id)
-    const { user, loadingUser, errorUser} = useUser(review.userId)
-    const { film, loadingFilm, errorFilm} = useFetchFilm(review.filmId)
+    const { user, loadingUser, errorUser} = useUser(review.user)
+    const { film, loadingFilm, errorFilm} = useFetchFilm(review.film)
 
     if (review.length===0) {
         return (
@@ -33,7 +33,7 @@ export default function ReviewDetails() {
         <Navbar/>
             <div className={styles.container}>
                 <div className={styles.filmContainer}>
-                        <img className={styles.poster} src={`/${film?.poster}`}/>
+                        <img className={styles.poster} src={`${film?.poster}`}/>
                         <div className={styles.filmHeader}>
                             <p className={styles.filmTitle} >{film.title}</p>
                             <div className={styles.filmRating} >
@@ -48,7 +48,7 @@ export default function ReviewDetails() {
                 <div className={styles.reviewContainer}>
                         <div className={styles.userInfo}>
                             <img className={styles.avatar} src={avatar_placeholder}/>
-                            <p className={styles.username}>{user?.fullName || "User"}</p>
+                            <p className={styles.username}>{user?.username || "User"}</p>
                         </div>
                         <p className={styles.reviewText}>{review.text}</p>
                         <div className={styles.reviewRating} >
@@ -59,11 +59,13 @@ export default function ReviewDetails() {
                             <img className={styles.reviewRatingStar} src="/icons/star_orange.png"/>
                             <img className={styles.reviewRatingStar} src="/icons/star_orange.png"/>
                         </div>
+                        {/*
                         <p className={styles.reviewUsefullness} >Was this review useful?</p>
                         <div className={styles.reviewUsefullnessContainer} >
                             <img className={styles.likeIcon} src="/icons/like.png"/>
                             <img className={styles.dislikeIcon} src="/icons/dislike.png"/>
                         </div>
+                        */}
                 </div>
             </div>
         </>

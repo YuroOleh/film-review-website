@@ -4,7 +4,7 @@ import styles from "../../styles/components/MoviesSort.module.css";
 
 function Sort({ onSortChange, onOrderChange, options=[] }) {
   const [selectedSortOption, setSelectedSortOption] = useState("Name");
-  const [selectedOrderOption, setSelectedOrderOption] = useState("Ascending");
+  const [selectedOrderOption, setSelectedOrderOption] = useState("Descending");
 
   const handleSortChange = (event) => {
     const value = event.target.value;
@@ -20,10 +20,10 @@ function Sort({ onSortChange, onOrderChange, options=[] }) {
       onSortChange('published');
     }
     else if(value==='Length'){
-      onSortChange('length_min');
+      onSortChange('length');
     }
     else if(value==='Date'){
-      onSortChange('date');
+      onSortChange('created_at');
     }
     else if(value==='Popularity'){
       onSortChange('users');

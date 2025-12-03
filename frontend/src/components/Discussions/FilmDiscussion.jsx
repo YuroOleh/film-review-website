@@ -8,8 +8,9 @@ import { useMessagesCount} from "../../hooks/useMessagesCount";
 import { useUniqueUsersCount} from "../../hooks/useUniqueUsersCount";
 
 function FilmDiscussion({ discussion }) {
-    const { film, loadingFilm, errorFilm } = useFetchFilm(discussion.filmId);
-    const { user, loadingUser, errorUser } = useUser(discussion.userId);
+    const { film, loadingFilm, errorFilm } = useFetchFilm(discussion.film);
+    const { user, loadingUser, errorUser } = useUser(discussion.user);
+    console.log(discussion)
 
     const { count: messageCount, loading: loadingMessages } = useMessagesCount(discussion.id);
     const { count: uniqueUsersCount, loading: loadingUsers } = useUniqueUsersCount(discussion.id);
@@ -27,7 +28,7 @@ function FilmDiscussion({ discussion }) {
 
                         <div className={styles.userInfo}>
                             <img className={styles.userInfoImg} src={avatar_placeholder} />
-                            <p className={styles.userInfoP}>{user?.fullName || "User"}</p>
+                            <p className={styles.userInfoP}>{user?.username || "User"}</p>
                         </div>
 
                         <div className={styles.commentsInfo}>

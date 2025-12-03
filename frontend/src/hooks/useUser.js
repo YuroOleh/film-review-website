@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { usersService } from "../services/usersService";
+import { authService2 } from "../services/authService2";
 
 export function useUser(userId) {
   const [user, setUser] = useState(null);
@@ -9,7 +9,7 @@ export function useUser(userId) {
   useEffect(() => {
     if (!userId) return;
 
-    usersService.getUser(userId)
+    authService2.user(userId)
       .then((data) => setUser(data))
       .catch((err) => setError(err))
       .finally(() => setLoading(false));

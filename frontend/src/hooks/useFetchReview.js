@@ -7,6 +7,7 @@ export const useFetchReview = (id) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+
     reviewsService.getById(id)
       .then(setReview)
       .catch(setError)

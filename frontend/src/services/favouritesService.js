@@ -1,18 +1,18 @@
-const API_URL = "http://localhost:3000/favourites";
+const API_URL = import.meta.env.VITE_API_URL + "films/favourites/";
 
 export const favouritesService = {
-    async getAll(userId){
-        const res = await fetch(`${API_URL}?userId=${userId}`);
-        if (!res.ok) throw new Error("Films were not found...");
+    async getAll(userId) {
+        const res = await fetch(`${API_URL}?userId=${userId}&ordering=created_at`);
+        if (!res.ok) throw new Error("Favourites were not found...");
 
         return res.json();
     },
 
-    async addToFavourites(userId, filmId){
+    async addToFavourites(userId, filmId) {
         const body = {
-            userId,
-            filmId
-        }
+            user: userId,
+            film: filmId
+        };
 
         const res = await fetch(API_URL, {
             method: "POST",
@@ -26,7 +26,7 @@ export const favouritesService = {
         return res.json();
     },
 
-    async removeFromFavourites(userId, filmId){
+    async removeFromFavourites(userId, filmId) {
         const res = await fetch(`${API_URL}?userId=${userId}&filmId=${filmId}`);
         if (!res.ok) throw new Error("Failed to find favourites items...");
 
@@ -34,7 +34,7 @@ export const favouritesService = {
         if (items.length === 0) return false;
 
         for (const item of items) {
-            await fetch(`${API_URL}/${item.id}`, { method: "DELETE" });
+            await fetch(`${API_URL}${item.id}/`, { method: "DELETE" });
         }
 
         return true;
@@ -48,6 +48,6 @@ export const favouritesService = {
         }
 
         const data = await res.json();
-        return data.length > 0;     
+        return data.length > 0;
     }
 };

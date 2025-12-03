@@ -1,16 +1,16 @@
-const API_URL = "http://localhost:3000/newsViews";
+const API_URL = import.meta.env.VITE_API_URL + "news/views/";
 
 export const viewsService = {
   async markAsViewed(newsId, userId) {
     await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ newsId, userId })
+      body: JSON.stringify({ article: newsId, user: userId })
     });
   },
 
   async getViewsCount(newsId) {
-    const res = await fetch(`${API_URL}?newsId=${newsId}`);
+    const res = await fetch(`${API_URL}?articleId=${newsId}`);
     if (!res.ok) throw new Error("Failed to fetch views");
     const views = await res.json();
 

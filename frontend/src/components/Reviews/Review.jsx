@@ -1,19 +1,15 @@
 import styles from "../../styles/components/Review.module.css";
 import avatar_placeholder from "../../assets/avatar_placeholder.png";
-import { useUser } from "../../hooks/useUser";
 
-function Review({review}) {
-    const {user, loading, error} = useUser(review.userId)
-    console.log(review.userId)
-
-    const date = new Date(review.date);
+function Review({review, user}) {
+    const date = new Date(review.created_at);
     const formatted = date.toLocaleDateString("uk-UA")
 
     return (
         <div className={styles.reviewCard}>
             <div className={styles.reviewHeader}>
                 <img src={avatar_placeholder} alt="" />
-                <p>{user?.fullName || "User"}</p>
+                <p>{user?.username || "User"}</p>
             </div>
             <div>
                 <p>

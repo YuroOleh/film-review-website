@@ -7,6 +7,8 @@ export const useFetchFilmDiscussions = (filmId) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!filmId) return;
+
     discussionsService.getDiscussionsByFilmId(filmId)
       .then(setDiscussions)
       .catch(setError)

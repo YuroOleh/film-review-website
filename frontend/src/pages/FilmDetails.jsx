@@ -27,13 +27,15 @@ export default function FilmDetails() {
     const { reviews, reviewsLoading, reviewsError } = useFetchFilmReviews(film?.id);
     const { discussions, discussionsLoading, discussionsError } = useFetchFilmDiscussions(film?.id);
     const user = JSON.parse(localStorage.getItem('user'))
+    console.log(user)
+    const userId = user?.id;
     const [showReviewForm, setShowReviewForm] = useState(false)
     const [showDiscussionForm, setShowDiscussionForm] = useState(false)
     const { rating, ratingLoading } = useFilmRating(film?.id);
     const { addFilm, addWatchlistLoading, addWatchlistError } = useAddFilmToWatchlist();
     const { addFilm:addFilmToFavourites, addFavouritesLoading, addFavouritesError } = useAddFilmToFavourites();
-    const {isInWatchlist, watchlistLoading, watchlistError} = useCheckWatchlist(user.id, film?.id)
-    const {isInFavourites, favouritesLoading, favouritesError} = useCheckFavourites(user.id, film?.id)
+    const {isInWatchlist, watchlistLoading, watchlistError} = useCheckWatchlist(userId, film?.id)
+    const {isInFavourites, favouritesLoading, favouritesError} = useCheckFavourites(userId, film?.id)
     const { deleteFilm, deleteWatchlistLoading, deleteWatchlistError } = useDeleteFilmFromWatchlist();
     const { deleteFilm:deleteFilmFromFavourites, deleteFavouritesLoading, deleteFavouritesError } = useDeleteFilmFromFavourites();
 
@@ -47,7 +49,7 @@ export default function FilmDetails() {
                     <div className={styles.filmDetailsContainer}>
                         <div className={styles.filmDetailsHeaderMain}>
                             <div>
-                                <img className={styles.detailsPoster} src={`/${film.poster}`} />
+                                <img className={styles.detailsPoster} src={`${film.poster}`} />
                             </div>
                             <div className={styles.filmDescriptionContainer}>
                                 <div>
@@ -84,8 +86,8 @@ export default function FilmDetails() {
                                         </p>
                                     </div>
                                     <div className={styles.addButtons}>
-                                        {!isInFavourites ? (<Button label="Add to favourites" onClick={() => addFilmToFavourites(user.id, film.id)}/>) : (<Button label="Delete from favourites" onClick={() => deleteFilmFromFavourites(user.id, film.id)}/>)}
-                                        {!isInWatchlist ? (<Button label="Add to watchlist" onClick={() => addFilm(user.id, film.id)}/>) : (<Button label="Delete from watchlist" onClick={() => deleteFilm(user.id, film.id)}/>)}
+                                        {!isInFavourites ? (<Button label="Add to favourites" onClick={() => addFilmToFavourites(userId, film.id)}/>) : (<Button label="Delete from favourites" onClick={() => deleteFilmFromFavourites(user.id, film.id)}/>)}
+                                        {!isInWatchlist ? (<Button label="Add to watchlist" onClick={() => addFilm(userId, film.id)}/>) : (<Button label="Delete from watchlist" onClick={() => deleteFilm(user.id, film.id)}/>)}
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +106,7 @@ export default function FilmDetails() {
                         <div></div>
 
                         <div className={styles.detailsButton}>
-                            <MovieDiscussions discussions={discussions}/>
+                            <MovieDiscussions discussions={discussions.results || []}/>
                             <div className={styles.discussionButton}>
                                 <Button label="Start discussion" onClick = {() => setShowDiscussionForm(true)}/>
                             </div>
@@ -112,7 +114,7 @@ export default function FilmDetails() {
 
                         <p className={styles.detailsLabel}>Reviews</p>
                         <div className={styles.reviewsContainer}>
-                            <MovieReviews reviews={reviews}/>
+                            <MovieReviews reviews={reviews.results || []}/>
                         </div>
                         <div className={styles.detailsButton}>
                             <Button label="Write review" onClick = {() => setShowReviewForm(true)}/>

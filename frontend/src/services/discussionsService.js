@@ -1,43 +1,31 @@
-const API_URL = "http://localhost:3000/discussions";
+const API_URL = import.meta.env.VITE_API_URL + "discussions/";
 
 export const discussionsService = {
-  async getAll(sortBy='date', orderBy='asc', search='', userId='') {
-    let query = `?_sort=${sortBy}&_order=${orderBy}`;
+  async getAll(sortBy = 'created_at', orderBy = 'asc', search = '', page = 1) {
+    let query = `?ordering=${orderBy === 'desc' ? '-' + sortBy : sortBy}`;
+
     if (search) {
-      query += `&title_like=${encodeURIComponent(search)}`;
+      query += `&search=${encodeURIComponent(search)}`;
     }
-    if (userId){
-      query += `&userId=${userId}`;
-    }
+
+    query += `&page=${page}`;
 
     const res = await fetch(`${API_URL}${query}`);
-    if (!res.ok) throw new Error("Films were not found...");
-    console.log("FETCHING:", `${API_URL}${query}`);
-    return res.json();
-  },
-
-  async getById(id) {
-    const res = await fetch(`${API_URL}/${id}`);
-    if (!res.ok) throw new Error("Discussion was not found...");
-    return res.json();
-  },
-
-  async getDiscussionsByFilmId(filmId){
-    const res = await fetch(`${API_URL}?filmId=${filmId}&_sort=-commentaries&_limit=10`);
     if (!res.ok) throw new Error("Discussions were not found...");
     return res.json();
   },
 
-  async createDiscussion(filmId, userId, title){
-    const date = new Date().toISOString().split("T")[0]; 
+  async getById(id) {
+    const res = await fetch(`${API_URL}${id}/`);
+    if (!res.ok) throw new Error("Discussion was not found...");
+    return res.json();
+  },
 
+  async createDiscussion(filmId, userId, title) {
     const body = {
-      filmId,
-      userId,
-      title,
-      date,
-      commentaries: 0,
-      users: 0
+      film: filmId,
+      user: userId,
+      title
     };
 
     const res = await fetch(API_URL, {
@@ -49,6 +37,12 @@ export const discussionsService = {
     });
 
     if (!res.ok) throw new Error("Failed to create discussion...");
+    return res.json();
+  },
+
+  async getDiscussionsByFilmId(filmId) {
+    const res = await fetch(`${API_URL}?filmId=${filmId}&ordering=-created_at`);
+    if (!res.ok) throw new Error("Discussions were not found...");
     return res.json();
   }
 };

@@ -9,8 +9,8 @@ import { useFetchReviews } from "../hooks/useFetchReviews";
 import Message from "../components/shared/Message";
 
 export default function MyReviews() {
-    const [sortBy, setSortBy] = useState('date');
-    const [orderBy, setOrderBy] = useState('asc');
+    const [sortBy, setSortBy] = useState('created_at');
+    const [orderBy, setOrderBy] = useState('desc');
     const [search, setSearch] = useState('')
     const user = JSON.parse(localStorage.getItem('user'))
     const { reviews, loading, error } = useFetchReviews(sortBy, orderBy, search, user.id);

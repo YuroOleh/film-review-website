@@ -7,6 +7,8 @@ export function useCheckWatchlist(userId, filmId) {
     const [error, setError] = useState(null)
 
     useEffect(() => {
+        if (!filmId) return;
+
         watchlistService.checkInWatchlist(userId, filmId)
             .then(setIsInWatchlist)
             .catch(setError)

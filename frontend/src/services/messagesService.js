@@ -1,8 +1,8 @@
-const API_URL = "http://localhost:3000/messages";
+const API_URL = import.meta.env.VITE_API_URL + "discussions/messages/";
 
 export const messagesService = {
   async getAll(discussionId) {
-    const res = await fetch(`${API_URL}?discussionId=${discussionId}&_sort=date&_order=asc`);
+    const res = await fetch(`${API_URL}?discussionId=${discussionId}&sorting=created_at`);
     if (!res.ok) throw new Error("Messages were not found...");
     return res.json();
   },
@@ -14,13 +14,11 @@ export const messagesService = {
   },
 
   async writeMessage(discussionId, userId, text) {
-    const date = new Date().toISOString().split("T")[0]; 
 
     const body = {
-      discussionId,
-      userId,
-      text,
-      date
+      discussion: discussionId,
+      user: userId,
+      text
     };
 
     const res = await fetch(API_URL, {

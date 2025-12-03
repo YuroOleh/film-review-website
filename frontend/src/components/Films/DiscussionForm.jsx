@@ -3,10 +3,23 @@ import styles from "../../styles/components/DiscussionForm.module.css";
 import Button from "../shared/Button";
 import Input from "../shared/Input";
 import { useCreateDiscussion } from "../../hooks/useCreateDiscussion";
+import { useAuth2 } from "../../hooks/useAuth2";
+import { useEffect } from "react";
 
 function DiscussionForm({ filmId, onClose }) {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const userId = user?.id;
+    const {getCurrentUser} = useAuth2()
+    const [user, setUser] = useState(null);
+    console.log(user)
+    
+     useEffect(() => {
+        async function load() {
+            const u = await getCurrentUser();
+            setUser(u);
+        }
+        load();
+    }, []);
+        
+    console.log(user)
 
     const [title, setTitle] = useState("");
 
@@ -15,7 +28,7 @@ function DiscussionForm({ filmId, onClose }) {
     async function handleCreate() {
         if (!title.trim()) return;
 
-        await createDiscussion(filmId, userId, title);
+        await createDiscussion(filmId, user.id, title);
 
         onClose();  
     }
