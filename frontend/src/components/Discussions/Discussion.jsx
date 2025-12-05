@@ -2,11 +2,11 @@ import styles from "../../styles/components/Discussion.module.css";
 import avatar_placeholder from "../../assets/avatar_placeholder.png";
 import { useUser } from "../../hooks/useUser";
 
-function Discussion({discussion}) {
-    const {user, loadingUser, errorUser} = useUser(discussion.userId)
+function Discussion({ discussion, testing }) {
+    const { user, loadingUser, errorUser } = testing || useUser(discussion.userId);
 
     return (
-        <div draggable='false' className={styles.discussionCard}>
+        <div draggable="false" className={styles.discussionCard}>
             <div className={styles.discussionTitle}>
                 <p>{discussion.title}</p>
             </div>

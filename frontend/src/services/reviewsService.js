@@ -1,18 +1,14 @@
 const API_URL = import.meta.env.VITE_API_URL + "reviews/";
 
 export const reviewsService = {
-  async getAll(sortBy = "date", orderBy = "desc", search = "", page = 1, userId = "", filmId = "") {
-    let query = `?ordering=${orderBy === "desc" ? "-" + sortBy : sortBy}&page=${page}`;
+  async getAll(sortBy = "date", orderBy = "desc", search = "", page = 1, pageSize = 6, userId = "", filmId = "") {
+    let query = `?ordering=${orderBy === "desc" ? "-" + sortBy : sortBy}&page=${page}&page_size=${pageSize}`;
 
     if (search) query += `&text=${encodeURIComponent(search)}`;
     if (userId) query += `&userId=${userId}`;
     if (filmId) query += `&filmId=${filmId}`;
 
-    const res = await fetch(`${API_URL}${query}`, {
-      method: "GET",
-      credentials: "include",
-    });
-
+    const res = await fetch(`${API_URL}${query}`, { method: "GET", credentials: "include" });
     if (!res.ok) throw new Error("Reviews were not found...");
     return res.json();
   },

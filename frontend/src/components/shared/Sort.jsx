@@ -25,8 +25,8 @@ function Sort({ onSortChange, onOrderChange, options=[] }) {
     else if(value==='Date'){
       onSortChange('created_at');
     }
-    else if(value==='Popularity'){
-      onSortChange('users');
+    else if(value==='Messages'){
+      onSortChange('message_count');
     }
     else if(value==='Likes'){
       onSortChange('likes');

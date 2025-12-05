@@ -10,7 +10,7 @@ import Article from "../components/News/Article"
 
 export default function News() {
     const [sortBy, setSortBy] = useState('title');
-    const [orderBy, setOrderBy] = useState('asc');
+    const [orderBy, setOrderBy] = useState('desc');
     const [search, setSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -40,7 +40,7 @@ export default function News() {
                         placeholder="Search news..."
                         SortComponent={
                             <Sort
-                                options={["title", "views", "comments", "date"]}
+                                options={["Title", "Views", "Comments", "Date"]}
                                 onSortChange={setSortBy}
                                 onOrderChange={setOrderBy}
                             />

@@ -11,7 +11,7 @@ import Message from "../components/shared/Message";
 
 export default function Films() {
     const [sortBy, setSortBy] = useState('title');
-    const [orderBy, setOrderBy] = useState('asc');
+    const [orderBy, setOrderBy] = useState('desc');
     const [search, setSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const filmsPerPage = 9;
@@ -33,7 +33,7 @@ export default function Films() {
                 FilterComponent={<MoviesFilter />}
                 SortComponent={
                     <Sort
-                        options={["title", "rating", "published", "length"]}
+                        options={["Title", "Rating", "Release date", "Length"]}
                         onSortChange={setSortBy}
                         onOrderChange={setOrderBy}
                     />

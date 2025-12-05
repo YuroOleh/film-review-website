@@ -40,7 +40,7 @@ export default function Discussions() {
                                 options={[
                                     "Date",
                                     "Title",
-                                    "Popularity"
+                                    "Messages"
                                 ]}
                                 onSortChange={setSortBy}
                                 onOrderChange={setOrderBy}

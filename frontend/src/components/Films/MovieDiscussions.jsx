@@ -41,6 +41,7 @@ function MovieDiscussions({discussions=[]}) {
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
+      data-testid="movie-discussions"
     >
       {discussions.map((discussion) => (
         <Link

@@ -1,36 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../../styles/components/DiscussionForm.module.css";
 import Button from "../shared/Button";
 import Input from "../shared/Input";
 import { useCreateDiscussion } from "../../hooks/useCreateDiscussion";
 import { useAuth2 } from "../../hooks/useAuth2";
-import { useEffect } from "react";
 
-function DiscussionForm({ filmId, onClose }) {
-    const {getCurrentUser} = useAuth2()
-    const [user, setUser] = useState(null);
-    console.log(user)
-    
-     useEffect(() => {
-        async function load() {
-            const u = await getCurrentUser();
-            setUser(u);
+function DiscussionForm({ filmId, onClose, testing }) {
+    const { getCurrentUser } = useAuth2();
+    const [user, setUser] = useState(testing?.user || null);
+
+    useEffect(() => {
+        if (!testing?.user) {
+            async function load() {
+                const u = await getCurrentUser();
+                setUser(u);
+            }
+            load();
         }
-        load();
-    }, []);
-        
-    console.log(user)
+    }, [getCurrentUser, testing]);
 
     const [title, setTitle] = useState("");
-
     const { createDiscussion, loading, error } = useCreateDiscussion();
 
     async function handleCreate() {
         if (!title.trim()) return;
 
-        await createDiscussion(filmId, user.id, title);
-
-        onClose();  
+        await (testing?.createDiscussion || createDiscussion)(filmId, user.id, title);
+        onClose();
     }
 
     return (
@@ -46,11 +42,7 @@ function DiscussionForm({ filmId, onClose }) {
 
                 <div className={styles.buttons}>
                     <Button label="Return" onClick={onClose} />
-
-                    <Button 
-                        label="Create"
-                        onClick={handleCreate}
-                    />
+                    <Button label="Create" onClick={handleCreate} />
                 </div>
             </div>
         </div>

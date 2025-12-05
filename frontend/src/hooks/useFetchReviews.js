@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { reviewsService } from "../services/reviewsService";
 
-export function useFetchReviews(sortBy, orderBy, search, currentPage, reviewsPerPage) {
+export function useFetchReviews(sortBy = "date", orderBy = "desc", search = "", page = 1, pageSize = 6, userId = "", filmId = "") {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const [totalPages, setTotalPages] = useState(1);
+    const [count, setTotalPages] = useState(1);
 
     useEffect(() => {
         async function load() {
@@ -13,10 +13,10 @@ export function useFetchReviews(sortBy, orderBy, search, currentPage, reviewsPer
                 setLoading(true);
                 setError(false);
 
-                const data = await reviewsService.getAll(sortBy, orderBy, search, currentPage);
+                const data = await reviewsService.getAll(sortBy, orderBy, search, page, pageSize, userId, filmId);
                 
                 setReviews(data.results || []);
-                setTotalPages(Math.max(1, Math.ceil((data.count || 0) / reviewsPerPage)));
+                setTotalPages(Math.max(1, Math.ceil((data.count || 0) / pageSize)));
             } catch (err) {
                 setError(true);
             } finally {
@@ -25,7 +25,7 @@ export function useFetchReviews(sortBy, orderBy, search, currentPage, reviewsPer
         }
 
         load();
-    }, [sortBy, orderBy, search, currentPage, reviewsPerPage]);
+    }, [sortBy, orderBy, search, page, pageSize, userId, filmId]);
 
-    return { reviews, loading, error, totalPages };
+    return { reviews, loading, error, count };
 }

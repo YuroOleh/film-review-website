@@ -30,6 +30,7 @@ export default function News() {
   useEffect(() => {
     if (articleId && userId) {
       markAsViewed(articleId, userId);
+      console.log(articleId, userId)
     }
   }, [articleId, userId, markAsViewed]);
 

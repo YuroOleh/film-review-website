@@ -14,7 +14,7 @@ export const viewsService = {
     if (!res.ok) throw new Error("Failed to fetch views");
     const views = await res.json();
 
-    const uniqueUsers = new Set(views.map(v => v.userId));
+    const uniqueUsers = new Set(views.map(v => v.user));
     return uniqueUsers.size;
   }
 };

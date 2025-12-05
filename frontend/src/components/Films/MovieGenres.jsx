@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import styles from "../../styles/components/MovieGenres.module.css";
 import Genre from "../shared/Genre";
 
-function MovieGenres({genres=[]}) {
+function MovieGenres({ genres = [] }) {
   const scrollRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -21,24 +21,30 @@ function MovieGenres({genres=[]}) {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX); 
+    const walk = x - startX;
     scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleClick = (e) => {
+    if (isDragging) e.preventDefault();
   };
 
   return (
     <div
       ref={scrollRef}
+      data-testid="movie-genres"
       className={styles.genres}
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
+      onClick={handleClick}
     >
-      {genres.map((genre) => (
-        <Genre  label={genre} />
+      {genres.map((genre, index) => (
+        <Genre key={index} label={genre} />
       ))}
     </div>
   );
 }
 
-export default MovieGenres
+export default MovieGenres;

@@ -36,6 +36,7 @@ function FavouriteMovies({films}) {
   return (
     <div
       ref={scrollRef}
+      data-testid="favourite-movies"
       className={styles.films}
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
@@ -44,6 +45,7 @@ function FavouriteMovies({films}) {
     >
       {films.map((film) => (
         <Link
+          key={film.id}
           to={`/films/details/${film.id}`}
           onClick={handleClick}
           className={styles.filmLink}

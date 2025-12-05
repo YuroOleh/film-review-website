@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import { discussionsService } from "../services/discussionsService";
 
-export function useFetchDiscussions(sortBy, orderBy, search) {
+export function useFetchDiscussions(
+    sortBy,
+    orderBy,
+    search,
+    page,
+    pageSize,
+    userId
+) {
     const [discussions, setDiscussions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const [totalPages, setTotalPages] = useState(1);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [count, setCount] = useState(0);
 
     useEffect(() => {
         async function load() {
@@ -18,11 +24,13 @@ export function useFetchDiscussions(sortBy, orderBy, search) {
                     sortBy,
                     orderBy,
                     search,
-                    currentPage
+                    page,
+                    pageSize,
+                    userId
                 );
 
                 setDiscussions(data.results || []);
-                setTotalPages(data.total_pages || 1);
+                setCount(data.count || 0);
             } catch (err) {
                 setError(true);
             } finally {
@@ -31,14 +39,12 @@ export function useFetchDiscussions(sortBy, orderBy, search) {
         }
 
         load();
-    }, [sortBy, orderBy, search, currentPage]);
+    }, [sortBy, orderBy, search, page, pageSize, userId]);
 
     return {
         discussions,
         loading,
         error,
-        totalPages,
-        currentPage,
-        setCurrentPage
+        count
     };
 }

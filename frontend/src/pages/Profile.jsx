@@ -23,10 +23,8 @@ export default function Profile() {
     const filmIds = useMemo(() => favourites.map(item => item.film), [favourites]);
     const { films, loading, error } = useFetchFilmsByIds(filmIds);
     const { watchlist, watchlistLoading, watchlistError } = useFetchWatchlist(user?.id);
-    const { reviews, reviewsLoading, reviewsError } = useFetchReviews(undefined, undefined, undefined, user?.id, undefined);
-    const { discussions, discussionsLoading, discussionsError } = useFetchDiscussions(undefined, undefined, undefined, user?.id, undefined)
-    
-
+    const { reviews, loading:  reviewsLoading,error: reviewsError,  count: reviewsCount} = useFetchReviews(undefined, undefined, undefined, undefined, undefined, user?.id);
+    const { discussions, loading: discussionsLoading, error: discussionsError, count: discussionsCount} = useFetchDiscussions(undefined, undefined, undefined, undefined, undefined, user?.id);
     return (
         <>
             <Navbar onLogoutClick={() => {setShowLogout(true)}}/>
@@ -85,11 +83,11 @@ export default function Profile() {
                         <div className={styles.sideItem}><Link to="/mywatchlist"><Button label="Go to watchlist" /></Link></div>
                     </div>
                     <div className={styles.sideContainer}>
-                        <div className={styles.sideItem}><p>My Reviews: {reviews.length}</p></div>
+                        <div className={styles.sideItem}><p>My Reviews: {reviewsCount}</p></div>
                         <div className={styles.sideItem}><Link to="/myreviews"><Button label="View reviews" /></Link></div>
                     </div>
                     <div className={styles.sideContainer}>
-                        <div className={styles.sideItem}><p>My Discussions: {discussions.length}</p></div>
+                        <div className={styles.sideItem}><p>My Discussions: {discussionsCount}</p></div>
                         <div className={styles.sideItem}><Link to="/mydiscussions"><Button label="See discussions" /></Link></div>
                     </div>
                 </div>

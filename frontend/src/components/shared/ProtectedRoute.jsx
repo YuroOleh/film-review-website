@@ -3,8 +3,9 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useAuth2 } from "../../hooks/useAuth2";
 import { useLocation } from "react-router-dom";
 
-function ProtectedRoute() {
-  const { getCurrentUser } = useAuth2();
+function ProtectedRoute({ getCurrentUserProp }) {
+  const { getCurrentUser: getCurrentUserFromHook } = useAuth2();
+  const getCurrentUser = getCurrentUserProp || getCurrentUserFromHook;
 
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
@@ -19,11 +20,11 @@ function ProtectedRoute() {
 
       if (me) {
         localStorage.setItem("user", JSON.stringify(me));
-      };
+      }
     }
 
     check();
-  }, [location.pathname]);
+  }, [location.pathname, getCurrentUser]);
 
   if (loading) {
     return <div>Loading...</div>;

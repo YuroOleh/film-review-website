@@ -1,15 +1,27 @@
 const API_URL = import.meta.env.VITE_API_URL + "discussions/";
 
 export const discussionsService = {
-  async getAll(sortBy = 'created_at', orderBy = 'asc', search = '', page = 1) {
-    let query = `?ordering=${orderBy === 'desc' ? '-' + sortBy : sortBy}`;
+  async getAll(
+    sortBy = "created_at",
+    orderBy = "asc",
+    search = "",
+    page = 1,
+    pageSize = 6,
+    userId = ""
+  ) {
+    let query = `?ordering=${orderBy === "desc" ? "-" + sortBy : sortBy}`;
 
     if (search) {
       query += `&search=${encodeURIComponent(search)}`;
     }
 
-    query += `&page=${page}`;
+    if (userId) {
+      query += `&userId=${userId}`;
+    }
 
+    query += `&page=${page}`;
+    query += `&page_size=${pageSize}`; 
+    
     const res = await fetch(`${API_URL}${query}`);
     if (!res.ok) throw new Error("Discussions were not found...");
     return res.json();
@@ -22,17 +34,11 @@ export const discussionsService = {
   },
 
   async createDiscussion(filmId, userId, title) {
-    const body = {
-      film: filmId,
-      user: userId,
-      title
-    };
+    const body = { film: filmId, user: userId, title };
 
     const res = await fetch(API_URL, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)
     });
 
