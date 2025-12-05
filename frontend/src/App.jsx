@@ -12,6 +12,9 @@ import Discussions from "./pages/Discussions";
 import DiscussionDetails from "./pages/DiscussionDetails";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/shared/ProtectedRoute";
+import MyReviews from "./pages/MyReviews";
+import MyDiscussions from "./pages/MyDiscussions";
+import MyWatchlist from "./pages/MyWatchlist";
 
 
 
@@ -25,12 +28,15 @@ function App() {
         <Route path="/films" element={<Films />} />
         <Route path="/films/details/:id" element={<FilmDetails />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/mydiscussions" element={<MyDiscussions />} />
+        <Route path="/myreviews" element={<MyReviews />} />
+        <Route path="/mywatchlist" element={<MyWatchlist />} />
         <Route path="/news" element={<News />} />
-        <Route path="/news/details" element={<NewsDetails />} />
+        <Route path="/news/details/:id" element={<NewsDetails />} />
         <Route path="/reviews" element={<Reviews />} />
-        <Route path="/reviews/details" element={<ReviewDetails />} />
+        <Route path="/reviews/details/:id" element={<ReviewDetails />} />
         <Route path="/discussions" element={<Discussions />} />
-        <Route path="/discussions/details" element={<DiscussionDetails />} />
+        <Route path="/discussions/details/:id" element={<DiscussionDetails />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

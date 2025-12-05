@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "../../styles/components/MovieReviews.module.css";
 import Review from "../Reviews/Review";
 
-function MovieReviews() {
+function MovieReviews({reviews = []}) {
   const scrollRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -36,25 +36,26 @@ function MovieReviews() {
   return (
     <div
       ref={scrollRef}
+      data-testid="movie-reviews"
       className={styles.reviews}
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
     >
-      {[...Array(6)].map((_, i) => (
+      {reviews.map((review) => (
         <Link
-          key={i}
-          to={`/reviews/details`}
+          key={review.id}
+          to={`/reviews/details/${review.id}`}
           onClick={handleClick}
           className={styles.reviewLink}
           draggable="false"
         >
-          <Review/>
+          <Review review={review}/>
         </Link>
       ))}
     </div>
   );
 }
 
-export default MovieReviews
+export default MovieReviews;

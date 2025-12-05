@@ -1,0 +1,52 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+*.mo
+*.db
+db.sqlite3
+media/
+staticfiles/
+static/
+
+# Django local settings
+/local_settings.py
+/settings_local.py
+
+# Migrations (опціонально, якщо не хочеш комітити)
+# **/migrations/*
+# !**/migrations/__init__.py
+
+# Pytest / coverage
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.python-version
+
+# IDEs
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.*
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db

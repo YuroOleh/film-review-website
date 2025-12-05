@@ -4,46 +4,84 @@ import Pagination from "../components/shared/Pagination";
 import FilmDiscussion from "../components/Discussions/FilmDiscussion";
 import styles from "../styles/pages/Discussions.module.css";
 import Sort from "../components/shared/Sort";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useFetchDiscussions } from "../hooks/useFetchDiscussions";
+import Message from "../components/shared/Message";
 
 export default function Discussions() {
-    const discussions = Array.from({ length: 100 }, () => <FilmDiscussion />);
-    const discussionsPerPage = 6;
-
-    const totalPages = Math.ceil(discussions.length / discussionsPerPage);
+    const [sortBy, setSortBy] = useState('created_at');
+    const [orderBy, setOrderBy] = useState('desc');
+    const [search, setSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const discussionsPerPage = 5;
 
-    const startIndex = (currentPage - 1) * discussionsPerPage;
-    const endIndex = startIndex + discussionsPerPage;
+    const {
+        discussions = [],
+        loading,
+        error,
+        count
+    } = useFetchDiscussions(sortBy, orderBy, search, currentPage, discussionsPerPage);
 
-    const currentDiscussions = discussions.slice(startIndex, endIndex);
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [sortBy, orderBy, search]);
+
+    const totalPages = Math.max(1, Math.ceil((count || 0) / discussionsPerPage));
 
     return (
         <>
             <Navbar/>
             <div className={styles.header}>
                 <div className={styles.search}>
-                    <Searchbar placeholder="Search discussions by title..." SortComponent={
-                <Sort
-                    options={[
-                    "Title",
-                    "Date",
-                    "Popularity"
-                    ]}
-                />}
-            />
+                    <Searchbar
+                        placeholder="Search discussions by title..."
+                        SortComponent={
+                            <Sort
+                                options={[
+                                    "Date",
+                                    "Title",
+                                    "Messages"
+                                ]}
+                                onSortChange={setSortBy}
+                                onOrderChange={setOrderBy}
+                            />
+                        }
+                        onSearch={setSearch}
+                    />
                 </div>
             </div>
             
             <div className={styles.discussions}>
-                {currentDiscussions}
+                {loading ? (
+                    <p>Loading...</p>
+                ) : discussions.length > 0 ? (
+                    discussions.map(discussion => (
+                        <FilmDiscussion key={discussion.id} discussion={discussion} />
+                    ))
+                ) : (
+                    !error && (
+                        <Message
+                            messageTitle='No discussions found...'
+                            messageText='There are no discussions matching your search criteria '
+                        />
+                    )
+                )}
             </div>
-            
+
+            {error && (
+                <Message
+                    messageTitle='Something went wrong...'
+                    messageText='It appears that the server is currently unavailable'
+                />
+            )}
 
             <div className={styles.pagination}>
-                <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage}/>
+                <Pagination
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    onPageChange={(p) => setCurrentPage(p)}
+                />
             </div>
-            
         </>
     );
 }

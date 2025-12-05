@@ -1,34 +1,81 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import Navbar from "../components/shared/Navbar";
 import Comment from "../components/shared/Comment";
-import styles from "../styles/pages/DiscussionDetails.module.css";
 import Input from "../components/shared/Input";
 import SendButton from "../components/shared/SendButton";
+import styles from "../styles/pages/DiscussionDetails.module.css";
+import { useFetchMessages } from "../hooks/useFetchMessages";
+import { useFetchDiscussion } from "../hooks/useFetchDiscussion";
+import { useWriteMessage } from "../hooks/useWriteMessage";
+import Message from "../components/shared/Message";
 
 export default function DiscussionDetails() {
-    return (
-        <>
-            <Navbar/>
-            <div className={styles.container}>
-               <div className={styles.header}>
-                    <p className={styles.headerP}>Where this scene was filmed?</p>
-                </div>
-                <div className={styles.chat}>
-                    <div  className={styles.comments}>
-                        <div className={styles.comment}><Comment text="At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis"/></div>
-                        <div className={styles.comment}><Comment text="Et harum quidem rerum facilis est et expedita distinctio. " /></div>
-                        <div className={styles.comment}><Comment text="Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores"/></div>
-                        <div className={styles.comment}><Comment text="Nam libero tempore"/></div>
-                        <div className={styles.comment}><Comment text="et quas molestias excepturi sint occaecati cupiditate non provident"/></div>
-                    </div>
-                    <div className={styles.sendMessage}>
-                        <Input placeholder="Send your message..."/>
-                    <div className={styles.button}><SendButton/></div> 
-                    </div>
-                </div> 
+  const { id: discussionId } = useParams();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user?.id;
+  const { discussion } = useFetchDiscussion(discussionId);
+  const { messages } = useFetchMessages(discussionId);
+  const { writeMessage } = useWriteMessage();
+
+  console.log(messages)
+
+  const [newMessage, setNewMessage] = useState("");
+
+  async function handleSend() {
+    console.log(discussionId)
+    console.log(userId)
+    console.log(newMessage)
+
+    if (!newMessage.trim()) return;
+
+    await writeMessage(discussionId, userId, newMessage);
+    setNewMessage("");
+  }
+
+  if (discussion.length===0) {
+        return (
+            <>
+                <Navbar />
+                <br />
+                <br />
+                <Message
+                    messageTitle="Discussion does not exist..."
+                    messageText="Check other discussions on the discussions page"
+                />
+            </>
+        );
+    }
+
+  return (
+    <>
+      <Navbar />
+      <div className={styles.container}>
+            <div className={styles.header}>
+                <p className={styles.headerP}>{discussion.title}</p>
             </div>
-            
-            
-            
-        </>
-    );
+
+            <div className={styles.chat}>
+                <div className={styles.comments}>
+                    {messages?.map((msg) => (
+                    <div key={msg.id} className={styles.comment}>
+                        <Comment message={msg}/>
+                    </div>
+                    ))}
+                </div>
+
+                <div className={styles.sendMessage}>
+                    <Input
+                    placeholder="Send your message..."
+                    value={newMessage}
+                    onChange={setNewMessage}
+                    />
+                    <div className={styles.button}>
+                    <SendButton onClick={handleSend} />
+                    </div>
+                </div>
+            </div>
+      </div>
+    </>
+  );
 }
