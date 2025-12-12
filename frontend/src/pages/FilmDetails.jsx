@@ -39,7 +39,6 @@ export default function FilmDetails() {
     const { deleteFilm, deleteWatchlistLoading, deleteWatchlistError } = useDeleteFilmFromWatchlist();
     const { deleteFilm:deleteFilmFromFavourites, deleteFavouritesLoading, deleteFavouritesError } = useDeleteFilmFromFavourites();
 
-
     if (film.length!==0){
         return (
             <>

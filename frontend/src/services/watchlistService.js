@@ -20,19 +20,27 @@ export const watchlistService = {
 
     async removeFromWatchlist(userId, filmId){
         const res = await fetch(`${API_URL}?userId=${userId}&filmId=${filmId}`);
+
         if (!res.ok) throw new Error("Failed to find watchlist items...");
-        const items = await res.json();
+
+        const data = await res.json();
+        const items = data.results || [];
+
         if (items.length === 0) return false;
+
         for (const item of items) {
             await fetch(`${API_URL}${item.id}/`, { method: "DELETE" });
         }
+
         return true;
     },
+
 
     async checkInWatchlist(userId, filmId){
         const res = await fetch(`${API_URL}?userId=${userId}&filmId=${filmId}`);
         if (!res.ok) throw new Error("Failed to check watchlist...");
+        
         const data = await res.json();
-        return data.length > 0;
+        return data.results && data.results.length > 0;
     }
 };

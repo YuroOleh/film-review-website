@@ -24,7 +24,7 @@ function ProtectedRoute({ getCurrentUserProp }) {
     }
 
     check();
-  }, [location.pathname, getCurrentUser]);
+  }, [location.pathname]);
 
   if (loading) {
     return <div>Loading...</div>;

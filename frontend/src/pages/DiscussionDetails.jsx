@@ -50,31 +50,31 @@ export default function DiscussionDetails() {
   return (
     <>
       <Navbar />
-      <div className={styles.container}>
-            <div className={styles.header}>
-                <p className={styles.headerP}>{discussion.title}</p>
-            </div>
+      <div className={styles.container} data-testid="discussion-container">
+        <div className={styles.header} data-testid="discussion-header">
+          <p className={styles.headerP}>{discussion.title}</p>
+        </div>
 
-            <div className={styles.chat}>
-                <div className={styles.comments}>
-                    {messages?.map((msg) => (
-                    <div key={msg.id} className={styles.comment}>
-                        <Comment message={msg}/>
-                    </div>
-                    ))}
-                </div>
+        <div className={styles.chat} data-testid="discussion-chat">
+          <div className={styles.comments}>
+            {messages?.map((msg) => (
+              <div key={msg.id} className={styles.comment} data-testid="comment">
+                <Comment message={msg}/>
+              </div>
+            ))}
+          </div>
 
-                <div className={styles.sendMessage}>
-                    <Input
-                    placeholder="Send your message..."
-                    value={newMessage}
-                    onChange={setNewMessage}
-                    />
-                    <div className={styles.button}>
-                    <SendButton onClick={handleSend} />
-                    </div>
-                </div>
+          <div className={styles.sendMessage}>
+            <Input
+              placeholder="Send your message..."
+              value={newMessage}
+              onChange={setNewMessage}
+            />
+            <div className={styles.button} data-testid="send-button">
+              <SendButton onClick={handleSend} />
             </div>
+          </div>
+        </div>
       </div>
     </>
   );

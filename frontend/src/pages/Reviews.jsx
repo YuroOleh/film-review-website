@@ -15,13 +15,14 @@ export default function Reviews() {
     const [currentPage, setCurrentPage] = useState(1);
     const reviewsPerPage = 4;
 
-    const { reviews = [], loading, error, totalPages } = useFetchReviews(
+    const { reviews = [], loading, error, count } = useFetchReviews(
         sortBy,
         orderBy,
         search,
         currentPage,
         reviewsPerPage
     );
+    console.log(count)
 
     useEffect(() => {
         setCurrentPage(1);
@@ -75,7 +76,7 @@ export default function Reviews() {
 
             <div className={styles.paginationContainer}>
                 <Pagination
-                    totalPages={totalPages}
+                    totalPages={count}
                     currentPage={currentPage}
                     onPageChange={(p) => setCurrentPage(p)}
                 />

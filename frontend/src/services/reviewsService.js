@@ -4,7 +4,7 @@ export const reviewsService = {
   async getAll(sortBy = "date", orderBy = "desc", search = "", page = 1, pageSize = 6, userId = "", filmId = "") {
     let query = `?ordering=${orderBy === "desc" ? "-" + sortBy : sortBy}&page=${page}&page_size=${pageSize}`;
 
-    if (search) query += `&text=${encodeURIComponent(search)}`;
+    if (search) query += `&search=${encodeURIComponent(search)}`;
     if (userId) query += `&userId=${userId}`;
     if (filmId) query += `&filmId=${filmId}`;
 

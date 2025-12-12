@@ -10,8 +10,14 @@ export default defineConfig({
       viteConfig: coverageViteConfig,
     },
     setupNodeEvents(on, config) {
-      codeCoverageTask(on, config);   
+      codeCoverageTask(on, config);
       return config;
     },
+  },
+
+  e2e: {
+    setupNodeEvents(on, config) {
+    },
+    baseUrl: "http://localhost:5173", 
   },
 });

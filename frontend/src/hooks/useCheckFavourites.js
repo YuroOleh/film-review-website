@@ -7,6 +7,8 @@ export function useCheckFavourites(userId, filmId) {
     const [error, setError] = useState(null)
 
     useEffect(() => {
+        if (!filmId) return;
+        
         favouritesService.checkInFavourites(userId, filmId)
             .then(setIsInFavourites)
             .catch(setError)
