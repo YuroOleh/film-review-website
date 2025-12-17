@@ -17,3 +17,7 @@
     width: 250px;
     height: auto;
 }
+
+.photos::-webkit-scrollbar {
+  display: none; 
+}

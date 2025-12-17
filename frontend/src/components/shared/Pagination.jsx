@@ -9,16 +9,17 @@ function Pagination(props) {
                     <img className={styles.paginationIcon} src="icons/previous1.png" />
                 </button>
             </div>
+            {}
             <div className={styles.next}  onClick={() => props.onPageChange(props.currentPage - 1)}>
                 <button disabled={props.currentPage === 1} className={styles.button}><img className={styles.paginationIcon} src="icons/previous1.png" /></button>
             </div>
             {props.currentPage > 2 && <div>
                 <button className={styles.paginationItem} onClick={() => props.onPageChange(1)}>1</button>
             </div>}
-            {props.currentPage - 3 >= 1 && <div>
+            {props.currentPage - 3 >= 1 && props.totalPages > 4 && <div>
                 <button className={styles.paginationItem}>...</button>
             </div>}
-            {props.currentPage === props.totalPages && <div>
+            {props.currentPage === props.totalPages && props.totalPages > 3 && <div>
                 <button className={styles.paginationItem} onClick={() => props.onPageChange(props.currentPage - 2)}>{props.currentPage - 2}</button>
             </div>}
             {props.currentPage > 1 && <div>
@@ -30,10 +31,10 @@ function Pagination(props) {
             {props.currentPage < props.totalPages && <div>
                 <button className={styles.paginationItem} onClick={() => props.onPageChange(props.currentPage + 1)}>{props.currentPage + 1}</button>
             </div>}
-            {props.currentPage === 1 && <div>
+            {props.currentPage === 1 && props.totalPages > 3 && <div>
                 <button className={styles.paginationItem} onClick={() => props.onPageChange(props.currentPage + 2)}>{props.currentPage + 2}</button>
             </div>}
-            {props.currentPage + 3 <= props.totalPages && <div>
+            {props.currentPage + 3 <= props.totalPages && props.totalPages > 4 && <div>
                 <button className={styles.paginationItem}>...</button>
             </div>}
             {props.currentPage < props.totalPages - 1 && <div>

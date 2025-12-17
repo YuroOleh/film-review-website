@@ -1,6 +1,9 @@
 .reviewCard {
     background-color: lightgray;
     width: 350px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
     padding: 10px;
     border-radius: 20px;
 }
@@ -17,6 +20,7 @@
 }
 
 .reviewBottom {
+    margin-top: auto;
     display: flex;
     justify-content: space-between;
 }

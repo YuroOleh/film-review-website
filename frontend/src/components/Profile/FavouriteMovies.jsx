@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "../../styles/components/FavouriteMovies.module.css";
 import poster_placeholder from "../../assets/poster_placeholder.jpg";
 
-function FavouriteMovies() {
+function FavouriteMovies({films}) {
   const scrollRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -36,20 +36,22 @@ function FavouriteMovies() {
   return (
     <div
       ref={scrollRef}
+      data-testid="favourite-movies"
       className={styles.films}
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
     >
-      {[...Array(6)].map(() => (
+      {films.map((film) => (
         <Link
-          to={`/films/details`}
+          key={film.id}
+          to={`/films/details/${film.id}`}
           onClick={handleClick}
           className={styles.filmLink}
           draggable="false"
         >
-          <img className={styles.filmsImg} src={poster_placeholder} />
+          <img className={styles.filmsImg} src={film.poster} />
         </Link>
       ))}
     </div>

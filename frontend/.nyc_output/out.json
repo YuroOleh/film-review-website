@@ -1,0 +1,567 @@
+{
+  "C:/Users/yojus/Desktop/Study/Back-end/Django/My_projects/film_review_website/frontend/src/components/shared/Message.jsx": {
+    "path": "C:/Users/yojus/Desktop/Study/Back-end/Django/My_projects/film_review_website/frontend/src/components/shared/Message.jsx",
+    "statementMap": {
+      "0": {
+        "start": {
+          "line": 4,
+          "column": 2
+        },
+        "end": {
+          "line": 23,
+          "column": 11
+        }
+      },
+      "1": {
+        "start": {
+          "line": 25,
+          "column": 0
+        },
+        "end": {
+          "line": 25,
+          "column": 13
+        }
+      },
+      "2": {
+        "start": {
+          "line": 28,
+          "column": 0
+        },
+        "end": {
+          "line": 28,
+          "column": 28
+        }
+      },
+      "3": {
+        "start": {
+          "line": 30,
+          "column": 20
+        },
+        "end": {
+          "line": 30,
+          "column": 97
+        }
+      },
+      "4": {
+        "start": {
+          "line": 31,
+          "column": 0
+        },
+        "end": {
+          "line": 45,
+          "column": 1
+        }
+      },
+      "5": {
+        "start": {
+          "line": 32,
+          "column": 2
+        },
+        "end": {
+          "line": 36,
+          "column": 3
+        }
+      },
+      "6": {
+        "start": {
+          "line": 33,
+          "column": 4
+        },
+        "end": {
+          "line": 35,
+          "column": 6
+        }
+      },
+      "7": {
+        "start": {
+          "line": 37,
+          "column": 2
+        },
+        "end": {
+          "line": 44,
+          "column": 5
+        }
+      },
+      "8": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 189
+        }
+      },
+      "9": {
+        "start": {
+          "line": 39,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 7
+        }
+      },
+      "10": {
+        "start": {
+          "line": 40,
+          "column": 6
+        },
+        "end": {
+          "line": 40,
+          "column": 31
+        }
+      },
+      "11": {
+        "start": {
+          "line": 40,
+          "column": 24
+        },
+        "end": {
+          "line": 40,
+          "column": 31
+        }
+      },
+      "12": {
+        "start": {
+          "line": 41,
+          "column": 32
+        },
+        "end": {
+          "line": 41,
+          "column": 238
+        }
+      },
+      "13": {
+        "start": {
+          "line": 42,
+          "column": 6
+        },
+        "end": {
+          "line": 42,
+          "column": 75
+        }
+      },
+      "14": {
+        "start": {
+          "line": 42,
+          "column": 29
+        },
+        "end": {
+          "line": 42,
+          "column": 75
+        }
+      },
+      "15": {
+        "start": {
+          "line": 47,
+          "column": 2
+        },
+        "end": {
+          "line": 47,
+          "column": 168
+        }
+      },
+      "16": {
+        "start": {
+          "line": 50,
+          "column": 2
+        },
+        "end": {
+          "line": 50,
+          "column": 62
+        }
+      }
+    },
+    "fnMap": {
+      "0": {
+        "name": "Message",
+        "decl": {
+          "start": {
+            "line": 3,
+            "column": 9
+          },
+          "end": {
+            "line": 3,
+            "column": 16
+          }
+        },
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 48
+          },
+          "end": {
+            "line": 24,
+            "column": 1
+          }
+        },
+        "line": 3
+      },
+      "1": {
+        "name": "(anonymous_1)",
+        "decl": {
+          "start": {
+            "line": 37,
+            "column": 52
+          },
+          "end": {
+            "line": 37,
+            "column": 53
+          }
+        },
+        "loc": {
+          "start": {
+            "line": 37,
+            "column": 72
+          },
+          "end": {
+            "line": 44,
+            "column": 3
+          }
+        },
+        "line": 37
+      },
+      "2": {
+        "name": "(anonymous_2)",
+        "decl": {
+          "start": {
+            "line": 39,
+            "column": 27
+          },
+          "end": {
+            "line": 39,
+            "column": 28
+          }
+        },
+        "loc": {
+          "start": {
+            "line": 39,
+            "column": 44
+          },
+          "end": {
+            "line": 43,
+            "column": 5
+          }
+        },
+        "line": 39
+      },
+      "3": {
+        "name": "$RefreshReg$",
+        "decl": {
+          "start": {
+            "line": 46,
+            "column": 9
+          },
+          "end": {
+            "line": 46,
+            "column": 21
+          }
+        },
+        "loc": {
+          "start": {
+            "line": 46,
+            "column": 32
+          },
+          "end": {
+            "line": 48,
+            "column": 1
+          }
+        },
+        "line": 46
+      },
+      "4": {
+        "name": "$RefreshSig$",
+        "decl": {
+          "start": {
+            "line": 49,
+            "column": 9
+          },
+          "end": {
+            "line": 49,
+            "column": 21
+          }
+        },
+        "loc": {
+          "start": {
+            "line": 49,
+            "column": 24
+          },
+          "end": {
+            "line": 51,
+            "column": 1
+          }
+        },
+        "line": 49
+      }
+    },
+    "branchMap": {
+      "0": {
+        "loc": {
+          "start": {
+            "line": 30,
+            "column": 20
+          },
+          "end": {
+            "line": 30,
+            "column": 97
+          }
+        },
+        "type": "binary-expr",
+        "locations": [
+          {
+            "start": {
+              "line": 30,
+              "column": 20
+            },
+            "end": {
+              "line": 30,
+              "column": 60
+            }
+          },
+          {
+            "start": {
+              "line": 30,
+              "column": 64
+            },
+            "end": {
+              "line": 30,
+              "column": 97
+            }
+          }
+        ],
+        "line": 30
+      },
+      "1": {
+        "loc": {
+          "start": {
+            "line": 31,
+            "column": 0
+          },
+          "end": {
+            "line": 45,
+            "column": 1
+          }
+        },
+        "type": "if",
+        "locations": [
+          {
+            "start": {
+              "line": 31,
+              "column": 0
+            },
+            "end": {
+              "line": 45,
+              "column": 1
+            }
+          },
+          {
+            "start": {},
+            "end": {}
+          }
+        ],
+        "line": 31
+      },
+      "2": {
+        "loc": {
+          "start": {
+            "line": 31,
+            "column": 4
+          },
+          "end": {
+            "line": 31,
+            "column": 35
+          }
+        },
+        "type": "binary-expr",
+        "locations": [
+          {
+            "start": {
+              "line": 31,
+              "column": 4
+            },
+            "end": {
+              "line": 31,
+              "column": 19
+            }
+          },
+          {
+            "start": {
+              "line": 31,
+              "column": 23
+            },
+            "end": {
+              "line": 31,
+              "column": 35
+            }
+          }
+        ],
+        "line": 31
+      },
+      "3": {
+        "loc": {
+          "start": {
+            "line": 32,
+            "column": 2
+          },
+          "end": {
+            "line": 36,
+            "column": 3
+          }
+        },
+        "type": "if",
+        "locations": [
+          {
+            "start": {
+              "line": 32,
+              "column": 2
+            },
+            "end": {
+              "line": 36,
+              "column": 3
+            }
+          },
+          {
+            "start": {},
+            "end": {}
+          }
+        ],
+        "line": 32
+      },
+      "4": {
+        "loc": {
+          "start": {
+            "line": 40,
+            "column": 6
+          },
+          "end": {
+            "line": 40,
+            "column": 31
+          }
+        },
+        "type": "if",
+        "locations": [
+          {
+            "start": {
+              "line": 40,
+              "column": 6
+            },
+            "end": {
+              "line": 40,
+              "column": 31
+            }
+          },
+          {
+            "start": {},
+            "end": {}
+          }
+        ],
+        "line": 40
+      },
+      "5": {
+        "loc": {
+          "start": {
+            "line": 42,
+            "column": 6
+          },
+          "end": {
+            "line": 42,
+            "column": 75
+          }
+        },
+        "type": "if",
+        "locations": [
+          {
+            "start": {
+              "line": 42,
+              "column": 6
+            },
+            "end": {
+              "line": 42,
+              "column": 75
+            }
+          },
+          {
+            "start": {},
+            "end": {}
+          }
+        ],
+        "line": 42
+      }
+    },
+    "s": {
+      "0": 2,
+      "1": 2,
+      "2": 2,
+      "3": 2,
+      "4": 2,
+      "5": 2,
+      "6": 0,
+      "7": 2,
+      "8": 2,
+      "9": 2,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 2,
+      "16": 0
+    },
+    "f": {
+      "0": 2,
+      "1": 2,
+      "2": 0,
+      "3": 2,
+      "4": 0
+    },
+    "b": {
+      "0": [
+        2,
+        0
+      ],
+      "1": [
+        2,
+        0
+      ],
+      "2": [
+        2,
+        2
+      ],
+      "3": [
+        0,
+        2
+      ],
+      "4": [
+        0,
+        0
+      ],
+      "5": [
+        0,
+        0
+      ]
+    },
+    "inputSourceMap": {
+      "version": 3,
+      "mappings": "AAII,mBAEQ,cAFR;AAJJ,OAAOA,YAAY;AAEnB,SAASC,QAAQ,EAACC,cAAcC,YAAW,GAAG;AAC5C,SACE,mCACI,iCAAC,SAAI,WAAWH,OAAOI,WACnB;AAAA,2BAAC,OAAE,WAAWJ,OAAOK,IAAKH,0BAA1B;AAAA;AAAA;AAAA;AAAA,WAAuC;AAAA,IACvC,uBAAC,OAAE,WAAWF,OAAOM,IAAKH,yBAA1B;AAAA;AAAA;AAAA;AAAA,WAAsC;AAAA,OAF1C;AAAA;AAAA;AAAA;AAAA,SAGA,KAJJ;AAAA;AAAA;AAAA;AAAA,SAKA;AAEJ;AAACI,KATQN;AAWT,eAAeA;AAAQ,IAAAM;AAAAC,aAAAD,IAAA",
+      "names": [
+        "styles",
+        "Message",
+        "messageTitle",
+        "messageText",
+        "container",
+        "p2",
+        "p3",
+        "_c",
+        "$RefreshReg$"
+      ],
+      "ignoreList": [],
+      "sources": [
+        "C:/Users/yojus/Desktop/Study/Back-end/Django/My_projects/film_review_website/frontend/src/components/shared/Message.jsx"
+      ],
+      "file": "C:/Users/yojus/Desktop/Study/Back-end/Django/My_projects/film_review_website/frontend/src/components/shared/Message.jsx"
+    },
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "6e886777198bdd39e3405cfe81f6be0b3cdd8cdb"
+  }
+}

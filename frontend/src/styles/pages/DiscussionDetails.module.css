@@ -10,13 +10,18 @@
 }
 
 .headerP{
+    margin: 0px 10px;
     font-size: xx-large;
     font-weight: bold;
+    text-align: center;
 }
 
 .chat{
+    display: flex;
+    flex-direction: column;
     width: 600px;
-    height: 500px;
+    min-height: 500px;
+    height: auto;
     background-color: white;
     padding: 20px 0px;
     border-bottom-left-radius: 10px;
@@ -29,7 +34,7 @@
 }
 
 .sendMessage{
-    margin-top: 70px;
+    margin-top: auto;
     display: flex;
     justify-content: center;
     align-items: center;
